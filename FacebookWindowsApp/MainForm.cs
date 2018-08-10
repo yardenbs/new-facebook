@@ -9,9 +9,9 @@ namespace FacebookWindowsApp
 {
     public partial class MainForm : Form
     {
+        private LogicFacade m_LogicFacade;
         private Album m_Album;
         private static int s_PhotoIdx = 0;
-        private LogicFacade m_LogicFacade;
 
         public User LoggedInUser { get; set; }
 
