@@ -3,16 +3,14 @@ using FacebookWrapper.ObjectModel;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace FacebookWindowsApp
 {
-    class LogicFacade
+    internal class LogicFacade
     {
         private AppSettings m_AppSettings;
-        private  MemoryGame m_MemoryGame;
+        private MemoryGame m_MemoryGame;
         private SentimentAnalyzer m_SentimentAnalyzer;
 
         public User LoggedInUser { get; set; }
@@ -25,7 +23,7 @@ namespace FacebookWindowsApp
             }
         }
 
-        internal void UpdateAppSettings()
+        public void UpdateAppSettings()
         {
             if (!m_AppSettings.RememberUser)
             {
@@ -35,9 +33,9 @@ namespace FacebookWindowsApp
             m_AppSettings.SaveToFile();
         }
 
-        internal void AnalyzePosts(Dictionary<string, bool> analyzedPosts)
+        public void AnalyzePosts(Dictionary<string, bool> i_AnalyzedPosts)
         {
-            if(m_SentimentAnalyzer == null)
+            if (m_SentimentAnalyzer == null)
             {
                 m_SentimentAnalyzer = new SentimentAnalyzer();
             }
@@ -49,16 +47,15 @@ namespace FacebookWindowsApp
                     continue;
                 }
 
-                analyzedPosts.Add(post.Message, m_SentimentAnalyzer.Predict(post.Message));
+                i_AnalyzedPosts.Add(post.Message, m_SentimentAnalyzer.Predict(post.Message));
             }
         }
 
-        internal void Login()
+        public void Login()
         {
             if (m_AppSettings.RememberUser == true)
             {
                 LoggedInUser = FacebookService.Connect(m_AppSettings.LastAccessToken).LoggedInUser;
-
             }
             else
             {
@@ -66,7 +63,7 @@ namespace FacebookWindowsApp
             }
         }
 
-        internal void StartMemoryGame(Button[] i_MovingButtons, EventHandler i_MainForm_GameEnded)
+        public void StartMemoryGame(Button[] i_MovingButtons, EventHandler i_MainForm_GameEnded)
         {
             if (m_MemoryGame == null)
             {
@@ -79,9 +76,18 @@ namespace FacebookWindowsApp
             m_MemoryGame.StartGame();
         }
 
-        internal void MoveButtons()
+        public void MoveButtons()
         {
             m_MemoryGame.MoveButtons();
+        }
+
+        public void Logout()
+        {
+            m_AppSettings.RememberUser = false;
+            m_AppSettings.LastAccessToken = null;
+            m_AppSettings.SaveToFile();
+            FacebookService.Logout(null);
+            Application.Exit();
         }
 
         private void handleLogin()
@@ -96,15 +102,6 @@ namespace FacebookWindowsApp
             {
                 LoggedInUser = loginForm.LoggedInUser;
             }
-        }
-
-        internal void Logout()
-        {
-            m_AppSettings.RememberUser = false;
-            m_AppSettings.LastAccessToken = null;
-            m_AppSettings.SaveToFile();
-            FacebookService.Logout(null);
-            Application.Exit();
         }
     }
 }
