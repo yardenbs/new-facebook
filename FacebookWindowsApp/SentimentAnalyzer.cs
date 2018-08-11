@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 
+//adding a change
+
 namespace FacebookWindowsApp
 {
     public class SentimentAnalyzer
