@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 
@@ -16,24 +17,33 @@ namespace FacebookWindowsApp
         public int Width { get; set; }
         public int Height { get; set; }
         private Random m_Random = new Random();
+        private List<string> m_PictureNames;
         public event EventHandler GameEnded;
 
-        public MemoryGame(int i_Width, int i_Height, FacebookObjectCollection<User> i_Friends, Button[] i_MovingButtons)
+        public MemoryGame(Size i_ClientSize, FacebookObjectCollection<User> i_Friends, Button[] i_MovingButtons)
         {
             MovingButtons = i_MovingButtons;
             Friends = i_Friends;
-            Width = i_Width;
-            Height = i_Height;
+            Width = i_ClientSize.Width;
+            Height = i_ClientSize.Height;
 
             for (int i = 0; i < MovingButtons.Length; i++)
             {
                 MovingButtons[i].Click += MovingButton_Click;
             }
+
+            m_PictureNames = new List<string>();
         }
 
         public void StartGame()
         {
             int selectedFriendButtonIndex;
+             string faceI = "face{0}";
+
+            for (int i = 0; i < Resource.NUM_OF_FACES; i++)
+            {
+                m_PictureNames.Add(string.Format(faceI, i + 1));
+            }
 
             handleFriendButton(out selectedFriendButtonIndex);
 
@@ -83,12 +93,11 @@ namespace FacebookWindowsApp
 
         private void handleNotFriendButton(Button i_NotFriendButton)
         {
-            List<string> pictureNames = new List<string> { "face1", "face2", "face3", "face4" };
-            int randomPictureIndex = m_Random.Next(0, pictureNames.Count);
-            string randomPictureName = pictureNames[randomPictureIndex];
+            int randomPictureIndex = m_Random.Next(0, m_PictureNames.Count);
+            string randomPictureName = m_PictureNames[randomPictureIndex];
 
             i_NotFriendButton.Tag = k_NOT_FRIEND_TAG;
-            pictureNames.Remove(randomPictureName);
+            m_PictureNames.Remove(randomPictureName);
             i_NotFriendButton.Image = Resource.ResourceManager.GetObject(randomPictureName) as Image;
         }
 

@@ -63,13 +63,13 @@ namespace FacebookWindowsApp
             }
         }
 
-        public void StartMemoryGame(Button[] i_MovingButtons, EventHandler i_MainForm_GameEnded)
+        public void StartMemoryGame(Button[] i_MovingButtons, EventHandler i_MainForm_GameEnded, Size i_ClientSize)
         {
             if (m_MemoryGame == null)
             {
                 Size clientSize = i_MovingButtons[0].ClientSize;
 
-                m_MemoryGame = new MemoryGame(clientSize.Width, clientSize.Height, LoggedInUser.Friends, i_MovingButtons);
+                m_MemoryGame = new MemoryGame(i_ClientSize, LoggedInUser.Friends, i_MovingButtons);
                 m_MemoryGame.GameEnded += i_MainForm_GameEnded;
             }
 

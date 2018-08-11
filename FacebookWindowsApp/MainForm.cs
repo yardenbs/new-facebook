@@ -46,7 +46,7 @@ namespace FacebookWindowsApp
             labelUserSex.Text = (LoggedInUser.Gender != null) ? LoggedInUser.Gender.Value.ToString() : null;
             labelUserBirthday.Text = LoggedInUser.Birthday;
             fetchFriends();
-            fetchPosts();
+           // fetchPosts(); TODO
             fetchEvents();
             fetchAlbums();
         }
@@ -241,7 +241,7 @@ namespace FacebookWindowsApp
             Button[] movingButtons = new Button[] { buttonMemory1, buttonMemory2, buttonMemory3 };
 
             buttonStartMemoryGame.Hide();
-            m_LogicFacade.StartMemoryGame(movingButtons, MainForm_GameEnded);
+            m_LogicFacade.StartMemoryGame(movingButtons, MainForm_GameEnded, ClientSize);
             timerGame.Start();
         }
 
