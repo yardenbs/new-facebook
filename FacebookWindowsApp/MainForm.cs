@@ -32,6 +32,7 @@ namespace FacebookWindowsApp
             panelFeature1.Hide();
             panelFeature2.Hide();
             m_LogicFacade.Login();
+            this.Show();
             fetchUserInfo();
         }
 
@@ -39,12 +40,12 @@ namespace FacebookWindowsApp
         {
             LoggedInUser = m_LogicFacade.LoggedInUser;
 
-            pictureBoxUser.LoadAsync(LoggedInUser.PictureNormalURL);
-            labelUserName.Text = LoggedInUser.Name;
-            labelUserEmail.Text = LoggedInUser.Email;
-            labelUserHometown.Text = (LoggedInUser.Hometown != null) ? LoggedInUser.Hometown.Name : null;
-            labelUserSex.Text = (LoggedInUser.Gender != null) ? LoggedInUser.Gender.Value.ToString() : null;
-            labelUserBirthday.Text = LoggedInUser.Birthday;
+            pictureBoxUser.Invoke(new Action(() => pictureBoxUser.LoadAsync(LoggedInUser.PictureNormalURL)));
+            labelUserName.Invoke(new Action(() => labelUserName.Text = LoggedInUser.Name));
+            labelUserEmail.Invoke(new Action(() => labelUserEmail.Text = LoggedInUser.Email));
+            labelUserHometown.Invoke(new Action(() => labelUserHometown.Text = (LoggedInUser.Hometown != null) ? LoggedInUser.Hometown.Name : null));
+            labelUserSex.Invoke(new Action(() => labelUserSex.Text = (LoggedInUser.Gender != null) ? LoggedInUser.Gender.Value.ToString() : null));
+            labelUserBirthday.Invoke(new Action(() => labelUserBirthday.Text = LoggedInUser.Birthday));
             fetchFriends();
            // fetchPosts(); TODO
             fetchEvents();
@@ -53,23 +54,23 @@ namespace FacebookWindowsApp
 
         private void fetchAlbums()
         {
-            listBoxAlbums.Items.Clear();
-            listBoxAlbums.DisplayMember = "Name";
+            listBoxAlbums.Invoke(new Action( () => listBoxAlbums.Items.Clear()));
+            listBoxAlbums.Invoke(new Action( () => listBoxAlbums.DisplayMember = "Name"));
 
             if (LoggedInUser.Albums.Count != 0)
             {
                 FacebookObjectCollection<Album> albums = LoggedInUser.Albums;
                 foreach (Album album in albums)
                 {
-                    listBoxAlbums.Items.Add(album);
+                    listBoxAlbums.Invoke(new Action(() => listBoxAlbums.Items.Add(album)));
                 }
             }
         }
 
         private void fetchEvents()
         {
-            listBoxEvents.Items.Clear();
-            listBoxEvents.DisplayMember = "Name";
+            listBoxEvents.Invoke(new Action(() => listBoxEvents.Items.Clear()));
+            listBoxEvents.Invoke(new Action(() => listBoxEvents.DisplayMember = "Name"));
 
             if (LoggedInUser.Events.Count != 0)
             {
@@ -78,7 +79,7 @@ namespace FacebookWindowsApp
                 {
                     try
                     {
-                        listBoxEvents.Items.Add(userEvent);
+                        listBoxEvents.Invoke(new Action(() => listBoxEvents.Items.Add(userEvent)));
                         userEvent.ReFetch(DynamicWrapper.eLoadOptions.Full);
                     }
                     catch (Exception)
@@ -89,14 +90,14 @@ namespace FacebookWindowsApp
             }
             else
             {
-                listBoxEvents.Hide();
+                listBoxEvents.Invoke(new Action(() => listBoxEvents.Hide()));
             }
         }
 
         private void fetchPosts()
         {
-            listBoxPosts.Items.Clear();
-            listBoxPosts.DisplayMember = "Message";
+            listBoxPosts.Invoke(new Action(() => listBoxPosts.Items.Clear()));
+            listBoxPosts.Invoke(new Action(() => listBoxPosts.DisplayMember = "Message"));
 
             if (LoggedInUser.Posts.Count != 0)
             {
@@ -106,7 +107,7 @@ namespace FacebookWindowsApp
                 {
                     try
                     {
-                        listBoxPosts.Items.Add(post);
+                        listBoxPosts.Invoke(new Action(() => listBoxPosts.Items.Add(post)));
                         post.ReFetch(DynamicWrapper.eLoadOptions.Full);
                     }
                     catch (Exception)
@@ -117,18 +118,18 @@ namespace FacebookWindowsApp
             }
             else
             {
-                listBoxPosts.Hide();
+                listBoxPosts.Invoke(new Action(() => listBoxPosts.Hide()));
             }
         }
 
         private void fetchFriends()
         {
-            listBoxFriends.Items.Clear();
-            listBoxFriends.DisplayMember = "Name";
+            listBoxFriends.Invoke(new Action(() => listBoxFriends.Items.Clear()));
+            listBoxFriends.Invoke(new Action(() => listBoxFriends.DisplayMember = "Name"));
 
             foreach (User friend in LoggedInUser.Friends)
             {
-                listBoxFriends.Items.Add(friend);
+                listBoxFriends.Invoke(new Action(() => listBoxFriends.Items.Add(friend)));
                 friend.ReFetch(DynamicWrapper.eLoadOptions.Full);
             }
 
@@ -201,9 +202,11 @@ namespace FacebookWindowsApp
 
         private void updateImage()
         {
-            pictureBoxSelectedAlbum.LoadAsync(m_Album.Photos[s_PhotoIdx].PictureNormalURL);
-            labelCountPhotoLikes.ResetText();
-            labelCountPhotoLikes.Text = m_Album.Photos[s_PhotoIdx].LikedBy.Count.ToString();
+            pictureBoxSelectedAlbum.Invoke(new Action(() => 
+                                        pictureBoxSelectedAlbum.LoadAsync(m_Album.Photos[s_PhotoIdx].PictureNormalURL)));
+            labelCountPhotoLikes.Invoke(new Action(() => labelCountPhotoLikes.ResetText()));
+            labelCountPhotoLikes.Invoke(new Action(() =>
+                                        labelCountPhotoLikes.Text = m_Album.Photos[s_PhotoIdx].LikedBy.Count.ToString()));
         }
 
         private void buttonRightScroll_Click(object sender, EventArgs e)
