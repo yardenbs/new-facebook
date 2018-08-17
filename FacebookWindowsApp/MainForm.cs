@@ -46,7 +46,7 @@ namespace FacebookWindowsApp
             labelUserSex.Text = (LoggedInUser.Gender != null) ? LoggedInUser.Gender.Value.ToString() : null;
             labelUserBirthday.Text = LoggedInUser.Birthday;
             fetchFriends();
-           // fetchPosts(); TODO
+            fetchPosts(); 
             fetchEvents();
             fetchAlbums();
         }
