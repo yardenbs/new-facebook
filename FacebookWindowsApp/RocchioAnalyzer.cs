@@ -53,7 +53,7 @@ namespace FacebookWindowsApp
         {
             Vec vec = new Vec(i_Sentence);
 
-            return (calculateVecDistance(vec, new Vec(m_Centroid_Neg)) - 2.1 < calculateVecDistance(vec, new Vec(m_Centroid_Pos))) ? false : true;
+            return (calculateVecDistance(vec, new Vec(m_Centroid_Neg)) -0.5  < calculateVecDistance(vec, new Vec(m_Centroid_Pos))) ? false : true;
         }
 
         private double calculateVecDistance(Vec i_Vec1, Vec i_Vec2)
