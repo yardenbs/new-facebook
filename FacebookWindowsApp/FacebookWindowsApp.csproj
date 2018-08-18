@@ -77,8 +77,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
-    <Compile Include="RocchioAnalyzer.cs" />
+    <Compile Include="RocchioModel.cs" />
     <Compile Include="SentimentAnalyzer.cs" />
+    <Compile Include="SvmModel.cs" />
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -5,13 +5,13 @@ using System.Text;
 
 namespace FacebookWindowsApp
 {
-    class RocchioAnalyzer : SentimentAnalyzer 
+    class RocchioModel : SentimentAnalyzer 
     {
         //using Rocchio Algorithm
         private List<float> m_Centroid_Neg;
         private List<float> m_Centroid_Pos;
 
-        public RocchioAnalyzer()
+        public RocchioModel()
         {
             m_Centroid_Neg = getNegVecFromFile();
             m_Centroid_Pos = getPosVecFromFile();
