@@ -37,7 +37,7 @@ namespace FacebookWindowsApp
         {
             if (m_SentimentAnalyzer == null)
             {
-                m_SentimentAnalyzer = new RocchioModel();
+                m_SentimentAnalyzer = new SvmModel();
             }
 
             foreach (Post post in LoggedInUser.Posts)

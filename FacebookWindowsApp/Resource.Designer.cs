@@ -19,16 +19,14 @@ namespace FacebookWindowsApp {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resource {
-        
+        internal static readonly int NUM_OF_FACES = 4;
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
-
-        public const int NUM_OF_FACES = 3;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resource() {
@@ -73,7 +71,6 @@ namespace FacebookWindowsApp {
         ///0.0
         ///0.0012940795858945326
         ///0.0
-        ///0.03558718861209965
         ///0.0
         ///0.002588159171789065
         ///0.002588159171789065
@@ -98,7 +95,10 @@ namespace FacebookWindowsApp {
         ///0.00032351989647363315
         ///0.0
         ///0.0
-        ///0.00032351989 [rest of string was truncated]&quot;;.
+        ///0.00032351989647363315
+        ///0.0
+        ///0.0
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string centroid_Neg {
             get {
@@ -117,7 +117,6 @@ namespace FacebookWindowsApp {
         ///0.0
         ///0.041551939924906134
         ///0.00025031289111389235
-        ///0.00425531914893617
         ///0.0
         ///0.02327909887359199
         ///0.02327909887359199
@@ -136,7 +135,8 @@ namespace FacebookWindowsApp {
         ///0.00025031289111389235
         ///0.0
         ///0.0017521902377972466
-        ///0.00175 [rest of string was truncated]&quot;;.
+        ///0.0017521902377972466
+        ///0.000 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string centroid_Pos {
             get {
@@ -155,7 +155,6 @@ namespace FacebookWindowsApp {
         ///aaron
         ///able
         ///abortion
-        ///about
         ///abrams
         ///absolute
         ///absolutely
@@ -185,21 +184,16 @@ namespace FacebookWindowsApp {
         ///adult
         ///adversity
         ///afraid
-        ///after
         ///afterschool
         ///afterwards
-        ///again
-        ///against
         ///ago
         ///agree
         ///agreed
         ///ah
         ///aimee
-        ///ain
         ///aka
         ///al
         ///alarm
-        ///all
         ///allegedly
         ///allegory
         ///almost
@@ -208,7 +202,11 @@ namespace FacebookWindowsApp {
         ///alright
         ///also
         ///although
-        ///alto [rest of string was truncated]&quot;;.
+        ///altogether
+        ///always
+        ///amazes
+        ///amazing
+        ///amazing [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string corpus {
             get {
@@ -253,6 +251,48 @@ namespace FacebookWindowsApp {
             get {
                 object obj = ResourceManager.GetObject("face4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0.1923597206805976
+        ///0.6343817653282459
+        ///0.6104115911586533
+        ///0.02397017416959234
+        ///0.2827785553989333
+        ///0.0
+        ///0.0
+        ///0.0
+        ///0.3267533027458024
+        ///0.0
+        ///0.0
+        ///0.43499399892016416
+        ///0.43499399892016416
+        ///-0.24996187376221626
+        ///0.0
+        ///-1.0755285551056204e-16
+        ///0.014980405993641248
+        ///0.0
+        ///0.0
+        ///0.2616775301175678
+        ///0.0
+        ///0.0
+        ///0.11878944347619647
+        ///-0.2472814864837346
+        ///0.024187770360279373
+        ///0.06572013739553471
+        ///0.0
+        ///-0.06864750697519174
+        ///0.1225272811131162
+        ///0.06276134430444136
+        ///-0.07848236684555963
+        ///-0.07848236684555962
+        ///0.0
+        ///0.077086 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string SVM_model {
+            get {
+                return ResourceManager.GetString("SVM_model", resourceCulture);
             }
         }
     }

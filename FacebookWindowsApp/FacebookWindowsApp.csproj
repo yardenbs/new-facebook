@@ -134,5 +134,8 @@
   <ItemGroup>
     <None Include="Resources\corpus.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SVM_model.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

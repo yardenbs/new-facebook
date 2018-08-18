@@ -21,9 +21,9 @@ namespace FacebookWindowsApp
         {
             List<float> res = new List<float>();
 
-            string[] corpusAsStrings = (FacebookWindowsApp.Resource.centroid_Neg).Split('\r');
+            string[] vectorAsStrings = (FacebookWindowsApp.Resource.centroid_Neg).Split('\r');
 
-            foreach (string num in corpusAsStrings)
+            foreach (string num in vectorAsStrings)
             {
                 float parsedFloat;
                 float.TryParse(num.Replace("\r", string.Empty), out parsedFloat);
@@ -37,9 +37,9 @@ namespace FacebookWindowsApp
         {
             List<float> res = new List<float>();
 
-            string[] corpusAsStrings = (FacebookWindowsApp.Resource.centroid_Pos).Split('\r');
+            string[] vectorAsStrings = (FacebookWindowsApp.Resource.centroid_Pos).Split('\r');
 
-            foreach (string num in corpusAsStrings)
+            foreach (string num in vectorAsStrings)
             {
                 float parsedFloat;
                 float.TryParse(num.Replace("\r", string.Empty), out parsedFloat);
@@ -53,7 +53,7 @@ namespace FacebookWindowsApp
         {
             Vec vec = new Vec(i_Sentence);
 
-            return (calculateVecDistance(vec, new Vec(m_Centroid_Neg)) -0.5  < calculateVecDistance(vec, new Vec(m_Centroid_Pos))) ? false : true;
+            return (calculateVecDistance(vec, new Vec(m_Centroid_Neg)) - 0.5  < calculateVecDistance(vec, new Vec(m_Centroid_Pos))) ? false : true;
         }
 
         private double calculateVecDistance(Vec i_Vec1, Vec i_Vec2)
