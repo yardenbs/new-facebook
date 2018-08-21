@@ -23,7 +23,7 @@ namespace FacebookWindowsApp {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resource {
-        internal static readonly int NUM_OF_FACES = 4;
+        
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
@@ -255,6 +255,15 @@ namespace FacebookWindowsApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rocchio Classifier: In machine learning, a Rocchio classifier or nearest centroid classifier is a classification model that assigns to observations the label of the class of training samples whose mean (centroid) is closest to the observation..
+        /// </summary>
+        internal static string RocchioExplanation {
+            get {
+                return ResourceManager.GetString("RocchioExplanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 0.1923597206805976
         ///0.6343817653282459
         ///0.6104115911586533
@@ -293,6 +302,15 @@ namespace FacebookWindowsApp {
         internal static string SVM_model {
             get {
                 return ResourceManager.GetString("SVM_model", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SVM Classifier: A Support Vector Machine (SVM) is a kind of large-margin classifier. It is a vector space based machine learning method where the goal is to find a decision boundary between two classes that is maximally far from any point in the training data (possibly discounting some points as outliers or noise)..
+        /// </summary>
+        internal static string SvmExplanation {
+            get {
+                return ResourceManager.GetString("SvmExplanation", resourceCulture);
             }
         }
     }

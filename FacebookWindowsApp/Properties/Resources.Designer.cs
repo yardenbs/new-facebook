@@ -19,7 +19,7 @@ namespace FacebookWindowsApp.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -57,6 +57,24 @@ namespace FacebookWindowsApp.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rocchio Classifier: In machine learning, a Rocchio classifier or nearest centroid classifier is a classification model that assigns to observations the label of the class of training samples whose mean (centroid) is closest to the observation..
+        /// </summary>
+        internal static string RocchioExplanation {
+            get {
+                return ResourceManager.GetString("RocchioExplanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SVM Classifier: A Support Vector Machine (SVM) is a kind of large-margin classifier. It is a vector space based machine learning method where the goal is to find a decision boundary between two classes that is maximally far from any point in the training data (possibly discounting some points as outliers or noise)..
+        /// </summary>
+        internal static string SvmExplanation {
+            get {
+                return ResourceManager.GetString("SvmExplanation", resourceCulture);
             }
         }
     }

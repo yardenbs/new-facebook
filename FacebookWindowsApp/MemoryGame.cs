@@ -40,7 +40,8 @@ namespace FacebookWindowsApp
             int selectedFriendButtonIndex;
              string faceI = "face{0}";
 
-            for (int i = 0; i < Resource.NUM_OF_FACES; i++)
+            //for (int i = 0; i < Resource.NUM_OF_FACES; i++)
+            for (int i = 0; i < 4; i++)
             {
                 m_PictureNames.Add(string.Format(faceI, i + 1));
             }

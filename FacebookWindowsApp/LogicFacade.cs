@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace FacebookWindowsApp
 {
@@ -12,6 +13,7 @@ namespace FacebookWindowsApp
         private AppSettings m_AppSettings;
         private MemoryGame m_MemoryGame;
         private SentimentAnalyzer m_SentimentAnalyzer;
+        private SentimentAnalyzerFactory m_SentiFactory = new SentimentAnalyzerFactory();
 
         public User LoggedInUser { get; set; }
 
@@ -31,6 +33,21 @@ namespace FacebookWindowsApp
             }
 
             m_AppSettings.SaveToFile();
+        }
+
+        public List<String> getClassifiers()
+        {
+            return m_SentiFactory.ClassifiersList.Keys.ToList();
+        }
+
+        public void SetSentimentAnalyzer(String i_classifier)
+        {
+            m_SentimentAnalyzer = m_SentiFactory.createSentimentAnalyzer(i_classifier);
+        }
+
+        public String getClassifierExplanation()
+        {
+            return m_SentimentAnalyzer.ClassifierExplanation;
         }
 
         public void AnalyzePosts(Dictionary<string, bool> i_AnalyzedPosts)

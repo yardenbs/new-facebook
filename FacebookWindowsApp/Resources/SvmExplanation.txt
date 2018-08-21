@@ -1,0 +1,1 @@
+SVM Classifier: A Support Vector Machine (SVM) is a kind of large-margin classifier. It is a vector space based machine learning method where the goal is to find a decision boundary between two classes that is maximally far from any point in the training data (possibly discounting some points as outliers or noise).

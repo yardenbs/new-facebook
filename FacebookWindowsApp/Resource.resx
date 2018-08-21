@@ -142,4 +142,10 @@
   <data name="SVM_model" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\SVM_model.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="RocchioExplanation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\RocchioExplanation.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="SvmExplanation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\SvmExplanation.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
 </root>

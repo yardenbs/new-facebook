@@ -38,17 +38,13 @@ namespace FacebookWindowsApp
         private void fetchUserInfo()
         {
             LoggedInUser = m_LogicFacade.LoggedInUser;
-
-            pictureBoxUser.LoadAsync(LoggedInUser.PictureNormalURL);
+            userBindingSource.DataSource = LoggedInUser;
             labelUserName.Text = LoggedInUser.Name;
-            labelUserEmail.Text = LoggedInUser.Email;
-            labelUserHometown.Text = (LoggedInUser.Hometown != null) ? LoggedInUser.Hometown.Name : null;
-            labelUserSex.Text = (LoggedInUser.Gender != null) ? LoggedInUser.Gender.Value.ToString() : null;
-            labelUserBirthday.Text = LoggedInUser.Birthday;
             fetchFriends();
             fetchPosts(); 
             fetchEvents();
             fetchAlbums();
+            fetchClassifiers();
         }
 
         private void fetchAlbums()
@@ -68,57 +64,12 @@ namespace FacebookWindowsApp
 
         private void fetchEvents()
         {
-            listBoxEvents.Items.Clear();
-            listBoxEvents.DisplayMember = "Name";
-
-            if (LoggedInUser.Events.Count != 0)
-            {
-                listBoxEvents.Show();
-                foreach (Event userEvent in LoggedInUser.Events)
-                {
-                    try
-                    {
-                        listBoxEvents.Items.Add(userEvent);
-                        userEvent.ReFetch(DynamicWrapper.eLoadOptions.Full);
-                    }
-                    catch (Exception)
-                    {
-
-                    }
-                }
-            }
-            else
-            {
-                listBoxEvents.Hide();
-            }
+            eventBindingSource.DataSource = LoggedInUser.Events;
         }
 
         private void fetchPosts()
         {
-            listBoxPosts.Items.Clear();
-            listBoxPosts.DisplayMember = "Message";
-
-            if (LoggedInUser.Posts.Count != 0)
-            {
-                listBoxPosts.Show();
-
-                foreach (Post post in LoggedInUser.Posts)
-                {
-                    try
-                    {
-                        listBoxPosts.Items.Add(post);
-                        post.ReFetch(DynamicWrapper.eLoadOptions.Full);
-                    }
-                    catch (Exception)
-                    {
-
-                    }
-                }
-            }
-            else
-            {
-                listBoxPosts.Hide();
-            }
+            postBindingSource.DataSource = LoggedInUser.Posts;
         }
 
         private void fetchFriends()
@@ -261,6 +212,8 @@ namespace FacebookWindowsApp
 
         private void populateLists(Dictionary<string, bool> i_analyzedPosts)
         {
+            ListBox listBox;
+
             listBoxPositive.Items.Clear();
             listBoxNegative.Items.Clear();
 
@@ -268,18 +221,50 @@ namespace FacebookWindowsApp
             {
                 if (pair.Value == true)
                 {
-                    listBoxPositive.Items.Add(pair.Key);
+                    listBox = listBoxPositive;
                 }
                 else
                 {
-                    listBoxNegative.Items.Add(pair.Key);
+                    listBox = listBoxNegative;
                 }
+
+                listBox.Items.Add(pair.Key);
             }
         }
 
         private void timerGame_Tick(object sender, EventArgs e)
         {
             m_LogicFacade.MoveButtons();
+        }
+
+        private void fetchClassifiers()
+        {
+            foreach (String classifierName in m_LogicFacade.getClassifiers())
+            {
+                listBoxClassifiers.Items.Add(convertCamelCaseToWords(classifierName));
+            }
+        }
+
+        private String convertCamelCaseToWords(string classifierName)
+        {
+            return System.Text.RegularExpressions.Regex.Replace(
+                System.Text.RegularExpressions.Regex.Replace(
+                    classifierName,
+                    @"(\P{Ll})(\P{Ll}\p{Ll})",
+                    "$1 $2"
+                ),
+                @"(\p{Ll})(\P{Ll})",
+                "$1 $2"
+            );
+        }
+
+        private void listBoxClassifiers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            m_LogicFacade.SetSentimentAnalyzer(((String)listBoxClassifiers.SelectedItem).Replace(" ",""));
+            textBoxExplanation.Clear();
+            listBoxPositive.Items.Clear();
+            listBoxNegative.Items.Clear();
+            textBoxExplanation.Text = m_LogicFacade.getClassifierExplanation();
         }
     }
 }

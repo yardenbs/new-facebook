@@ -13,6 +13,7 @@ namespace FacebookWindowsApp
 
         public RocchioModel()
         {
+            Name = this.GetType().Name;
             m_Centroid_Neg = getNegVecFromFile();
             m_Centroid_Pos = getPosVecFromFile();
         }
@@ -74,6 +75,11 @@ namespace FacebookWindowsApp
             }
 
             return sum;
+        }
+
+        protected override void setExplanation()
+        {
+            this.ClassifierExplanation = FacebookWindowsApp.Resource.RocchioExplanation;
         }
     }
 }

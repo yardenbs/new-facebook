@@ -1,0 +1,1 @@
+Rocchio Classifier: In machine learning, a Rocchio classifier or nearest centroid classifier is a classification model that assigns to observations the label of the class of training samples whose mean (centroid) is closest to the observation.

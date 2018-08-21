@@ -7,12 +7,14 @@ namespace FacebookWindowsApp
 {
     public abstract class SentimentAnalyzer
     {
-
         protected static List<string> s_Corpus;
+        public String Name { get; protected set; }
+        public String ClassifierExplanation { get; protected set; }
 
         public SentimentAnalyzer()
         {
             s_Corpus = createCorpus();
+            setExplanation();
         }
 
         private List<string> createCorpus()
@@ -90,6 +92,8 @@ namespace FacebookWindowsApp
                 return res;
             }
         }
+
+        protected abstract void setExplanation();
 
         public abstract bool Predict(string i_Sentence);
     }

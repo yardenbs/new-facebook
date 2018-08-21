@@ -12,6 +12,7 @@ namespace FacebookWindowsApp
 
         public SvmModel()
         {
+            Name = this.GetType().Name;
             m_trainedSvmModel = getSvmModelFromFile();
         }
 
@@ -52,6 +53,9 @@ namespace FacebookWindowsApp
             return sum;
         }
 
-
+        protected override void setExplanation()
+        {
+            this.ClassifierExplanation = FacebookWindowsApp.Resource.SvmExplanation;
+        }
     }
 }
