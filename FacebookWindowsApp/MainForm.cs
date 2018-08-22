@@ -102,6 +102,8 @@ namespace FacebookWindowsApp
                 if (!string.IsNullOrEmpty(textBoxPost.Text))
                 {
                     LoggedInUser.PostStatus(textBoxPost.Text);
+                    LoggedInUser.ReFetch("posts");
+                    fetchPosts();
                 }
             }
             catch (Exception)

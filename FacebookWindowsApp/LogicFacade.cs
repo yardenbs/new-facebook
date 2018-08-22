@@ -52,11 +52,6 @@ namespace FacebookWindowsApp
 
         public void AnalyzePosts(Dictionary<string, bool> i_AnalyzedPosts)
         {
-            if (m_SentimentAnalyzer == null)
-            {
-                m_SentimentAnalyzer = new SvmModel();
-            }
-
             foreach (Post post in LoggedInUser.Posts)
             {
                 if (post.Message == null)
