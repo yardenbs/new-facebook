@@ -20,11 +20,11 @@ namespace FacebookWindowsApp
         {
             ClassifiersList = new Dictionary<String, ConstructorInfo>();
 
-            foreach ( Assembly assembley in AppDomain.CurrentDomain.GetAssemblies())
+            foreach (Assembly assembley in AppDomain.CurrentDomain.GetAssemblies())
             {
-                foreach ( Type type in assembley.GetTypes())
+                foreach (Type type in assembley.GetTypes())
                 {
-                    if (type.IsSubclassOf(typeof(SentimentAnalyzer)) && !type.IsAbstract && type.IsClass)
+                    if (type.IsSubclassOf(typeof(SentimentAnalyzer)) && !type.IsAbstract )
                     {
                         ConstructorInfo ctor = type.GetConstructor(new Type[] { });
                         ClassifiersList.Add(type.Name, ctor);
