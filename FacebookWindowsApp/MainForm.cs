@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 
@@ -102,7 +103,7 @@ namespace FacebookWindowsApp
                 if (!string.IsNullOrEmpty(textBoxPost.Text))
                 {
                     LoggedInUser.PostStatus(textBoxPost.Text);
-                    LoggedInUser.ReFetch("posts");
+                    new Thread(() => LoggedInUser.ReFetch("posts")).Start();
                     fetchPosts();
                 }
             }
