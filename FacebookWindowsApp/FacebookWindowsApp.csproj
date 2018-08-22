@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>FacebookWindowsApp.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Facebook">
       <HintPath>..\FacebookDlls\Facebook.dll</HintPath>

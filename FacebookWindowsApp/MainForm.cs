@@ -32,6 +32,7 @@ namespace FacebookWindowsApp
             panelFeature1.Hide();
             panelFeature2.Hide();
             m_LogicFacade.Login();
+            this.Show();
             fetchUserInfo();
         }
 
@@ -49,15 +50,15 @@ namespace FacebookWindowsApp
 
         private void fetchAlbums()
         {
-            listBoxAlbums.Items.Clear();
-            listBoxAlbums.DisplayMember = "Name";
+            listBoxAlbums.Invoke(new Action( () => listBoxAlbums.Items.Clear()));
+            listBoxAlbums.Invoke(new Action( () => listBoxAlbums.DisplayMember = "Name"));
 
             if (LoggedInUser.Albums.Count != 0)
             {
                 FacebookObjectCollection<Album> albums = LoggedInUser.Albums;
                 foreach (Album album in albums)
                 {
-                    listBoxAlbums.Items.Add(album);
+                    listBoxAlbums.Invoke(new Action(() => listBoxAlbums.Items.Add(album)));
                 }
             }
         }
@@ -74,12 +75,12 @@ namespace FacebookWindowsApp
 
         private void fetchFriends()
         {
-            listBoxFriends.Items.Clear();
-            listBoxFriends.DisplayMember = "Name";
+            listBoxFriends.Invoke(new Action(() => listBoxFriends.Items.Clear()));
+            listBoxFriends.Invoke(new Action(() => listBoxFriends.DisplayMember = "Name"));
 
             foreach (User friend in LoggedInUser.Friends)
             {
-                listBoxFriends.Items.Add(friend);
+                listBoxFriends.Invoke(new Action(() => listBoxFriends.Items.Add(friend)));
                 friend.ReFetch(DynamicWrapper.eLoadOptions.Full);
             }
 
@@ -152,9 +153,11 @@ namespace FacebookWindowsApp
 
         private void updateImage()
         {
-            pictureBoxSelectedAlbum.LoadAsync(m_Album.Photos[s_PhotoIdx].PictureNormalURL);
-            labelCountPhotoLikes.ResetText();
-            labelCountPhotoLikes.Text = m_Album.Photos[s_PhotoIdx].LikedBy.Count.ToString();
+            pictureBoxSelectedAlbum.Invoke(new Action(() => 
+                                        pictureBoxSelectedAlbum.LoadAsync(m_Album.Photos[s_PhotoIdx].PictureNormalURL)));
+            labelCountPhotoLikes.Invoke(new Action(() => labelCountPhotoLikes.ResetText()));
+            labelCountPhotoLikes.Invoke(new Action(() =>
+                                        labelCountPhotoLikes.Text = m_Album.Photos[s_PhotoIdx].LikedBy.Count.ToString()));
         }
 
         private void buttonRightScroll_Click(object sender, EventArgs e)
