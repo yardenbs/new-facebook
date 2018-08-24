@@ -1,8 +1,8 @@
-﻿using System;
+﻿using FacebookWrapper.ObjectModel;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
-using FacebookWrapper.ObjectModel;
 
 namespace FacebookWindowsApp
 {
@@ -34,16 +34,16 @@ namespace FacebookWindowsApp
             panelFeature2.Hide();
             m_LogicFacade.Login();
             this.Show();
-            fetchUserInfo();
+            backgroundWorkerUserInfo.RunWorkerAsync();
         }
 
         private void fetchUserInfo()
         {
             LoggedInUser = m_LogicFacade.LoggedInUser;
             userBindingSource.DataSource = LoggedInUser;
-            labelUserName.Text = LoggedInUser.Name;
+            labelUserName.Invoke(new Action(() => labelUserName.Text = LoggedInUser.Name));
             fetchFriends();
-            fetchPosts(); 
+            fetchPosts();
             fetchEvents();
             fetchAlbums();
             fetchClassifiers();
@@ -51,8 +51,8 @@ namespace FacebookWindowsApp
 
         private void fetchAlbums()
         {
-            listBoxAlbums.Invoke(new Action( () => listBoxAlbums.Items.Clear()));
-            listBoxAlbums.Invoke(new Action( () => listBoxAlbums.DisplayMember = "Name"));
+            listBoxAlbums.Invoke(new Action(() => listBoxAlbums.Items.Clear()));
+            listBoxAlbums.Invoke(new Action(() => listBoxAlbums.DisplayMember = "Name"));
 
             if (LoggedInUser.Albums.Count != 0)
             {
@@ -95,26 +95,10 @@ namespace FacebookWindowsApp
         {
             m_LogicFacade.Logout();
         }
-        
+
         private void buttonPost_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (!string.IsNullOrEmpty(textBoxPost.Text))
-                {
-                    LoggedInUser.PostStatus(textBoxPost.Text);
-                    new Thread(() => LoggedInUser.ReFetch("posts")).Start();
-                    fetchPosts();
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-            finally
-            {
-                textBoxPost.Clear();
-            }
+            backgroundWorkerPost.RunWorkerAsync();
         }
 
         private void listBoxFriends_SelectedIndexChanged(object sender, EventArgs e)
@@ -156,7 +140,7 @@ namespace FacebookWindowsApp
 
         private void updateImage()
         {
-            pictureBoxSelectedAlbum.Invoke(new Action(() => 
+            pictureBoxSelectedAlbum.Invoke(new Action(() =>
                                         pictureBoxSelectedAlbum.LoadAsync(m_Album.Photos[s_PhotoIdx].PictureNormalURL)));
             labelCountPhotoLikes.Invoke(new Action(() => labelCountPhotoLikes.ResetText()));
             labelCountPhotoLikes.Invoke(new Action(() =>
@@ -211,7 +195,7 @@ namespace FacebookWindowsApp
         private void buttonSentiment_Click(object sender, EventArgs e)
         {
             Dictionary<string, bool> analyzedPosts = new Dictionary<string, bool>();
-   
+
             m_LogicFacade.AnalyzePosts(analyzedPosts);
             populateLists(analyzedPosts);
         }
@@ -245,7 +229,7 @@ namespace FacebookWindowsApp
 
         private void fetchClassifiers()
         {
-            foreach (String classifierName in m_LogicFacade.getClassifiers())
+            foreach (String classifierName in m_LogicFacade.GetClassifiers())
             {
                 listBoxClassifiers.Items.Add(convertCamelCaseToWords(classifierName));
             }
@@ -266,11 +250,36 @@ namespace FacebookWindowsApp
 
         private void listBoxClassifiers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            m_LogicFacade.SetSentimentAnalyzer(((String)listBoxClassifiers.SelectedItem).Replace(" ",""));
+            m_LogicFacade.SetSentimentAnalyzer(((String)listBoxClassifiers.SelectedItem).Replace(" ", ""));
             textBoxExplanation.Clear();
             listBoxPositive.Items.Clear();
             listBoxNegative.Items.Clear();
-            textBoxExplanation.Text = m_LogicFacade.getClassifierExplanation();
+            textBoxExplanation.Text = m_LogicFacade.GetClassifierExplanation();
+        }
+
+        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            fetchUserInfo();
+        }
+
+        private void backgroundWorkerPost_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(textBoxPost.Text))
+                {
+                    LoggedInUser.PostStatus(textBoxPost.Text);
+                    new Thread(() => LoggedInUser.ReFetch("posts")).Start();
+                    fetchPosts();
+                }
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                textBoxPost.Clear();
+            }
         }
     }
 }

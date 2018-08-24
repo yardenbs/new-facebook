@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Reflection;
 
 namespace FacebookWindowsApp
 {
-    class SentimentAnalyzerFactory
+    internal class SentimentAnalyzerFactory
     {
         public Dictionary<String, ConstructorInfo> ClassifiersList { get; private set; }
 
@@ -15,7 +13,7 @@ namespace FacebookWindowsApp
             loadClassifiers();
         }
 
-        // Use reflection to retrieve all classifiers in the App Domain 
+        // Use reflection to retrieve all classifiers in the App Domain
         private void loadClassifiers()
         {
             ClassifiersList = new Dictionary<String, ConstructorInfo>();
@@ -24,7 +22,7 @@ namespace FacebookWindowsApp
             {
                 foreach (Type type in assembley.GetTypes())
                 {
-                    if (type.IsSubclassOf(typeof(SentimentAnalyzer)) && !type.IsAbstract )
+                    if (type.IsSubclassOf(typeof(SentimentAnalyzer)) && !type.IsAbstract)
                     {
                         ConstructorInfo ctor = type.GetConstructor(new Type[] { });
                         ClassifiersList.Add(type.Name, ctor);
@@ -37,7 +35,7 @@ namespace FacebookWindowsApp
         {
             ConstructorInfo ret = null;
 
-            if ( ClassifiersList.TryGetValue(i_classifierType, out ret) )
+            if (ClassifiersList.TryGetValue(i_classifierType, out ret))
             {
                 return ret.Invoke(new Object[] { }) as SentimentAnalyzer;
             }

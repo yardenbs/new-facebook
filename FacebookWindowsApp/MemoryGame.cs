@@ -1,9 +1,8 @@
-﻿using System;
+﻿using FacebookWrapper.ObjectModel;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Reflection;
 using System.Windows.Forms;
-using FacebookWrapper.ObjectModel;
 
 namespace FacebookWindowsApp
 {
@@ -18,6 +17,7 @@ namespace FacebookWindowsApp
         public int Height { get; set; }
         private Random m_Random = new Random();
         private List<string> m_PictureNames;
+
         public event EventHandler GameEnded;
 
         public MemoryGame(Size i_ClientSize, FacebookObjectCollection<User> i_Friends, Button[] i_MovingButtons)
@@ -38,7 +38,7 @@ namespace FacebookWindowsApp
         public void StartGame()
         {
             int selectedFriendButtonIndex;
-             string faceI = "face{0}";
+            string faceI = "face{0}";
 
             for (int i = 0; i < Resource.k_NUM_OF_FACES; i++)
             {

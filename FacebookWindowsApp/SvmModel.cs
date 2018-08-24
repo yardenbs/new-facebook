@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace FacebookWindowsApp
 {
-    class SvmModel : SentimentAnalyzer
+    internal class SvmModel : SentimentAnalyzer
     {
         //using SVM classifier
         private Vec m_trainedSvmModel;
@@ -31,7 +28,6 @@ namespace FacebookWindowsApp
 
             return new Vec(res);
         }
-
 
         public override bool Predict(string i_Sentence)
         {

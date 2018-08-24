@@ -14,7 +14,6 @@ namespace FacebookWindowsApp
 
         private AppSettings()
         {
-
         }
 
         public static AppSettings LoadFromFile()
@@ -32,7 +31,7 @@ namespace FacebookWindowsApp
 
             return appSettings;
         }
-        
+
         public static AppSettings Instance
         {
             get
@@ -47,6 +46,7 @@ namespace FacebookWindowsApp
                         }
                     }
                 }
+
                 return s_Instance;
             }
         }

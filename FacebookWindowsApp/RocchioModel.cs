@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FacebookWindowsApp
 {
-    class RocchioModel : SentimentAnalyzer 
+    internal class RocchioModel : SentimentAnalyzer
     {
         //using Rocchio Algorithm
         private List<float> m_Centroid_Neg;
+
         private List<float> m_Centroid_Pos;
 
         public RocchioModel()
@@ -54,7 +53,7 @@ namespace FacebookWindowsApp
         {
             Vec vec = new Vec(i_Sentence);
 
-            return (calculateVecDistance(vec, new Vec(m_Centroid_Neg)) - 0.5  < calculateVecDistance(vec, new Vec(m_Centroid_Pos))) ? false : true;
+            return (calculateVecDistance(vec, new Vec(m_Centroid_Neg)) - 0.5 < calculateVecDistance(vec, new Vec(m_Centroid_Pos))) ? false : true;
         }
 
         private double calculateVecDistance(Vec i_Vec1, Vec i_Vec2)

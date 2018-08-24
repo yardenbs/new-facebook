@@ -5,7 +5,6 @@ namespace FacebookWindowsApp
 {
     public class CircularButton : Button
     {
-
         protected override void OnPaint(PaintEventArgs pevent)
         {
             GraphicsPath grPath = new GraphicsPath();
@@ -18,7 +17,6 @@ namespace FacebookWindowsApp
         {
             this.SuspendLayout();
             this.ResumeLayout(false);
-
         }
     }
 }

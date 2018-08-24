@@ -3,8 +3,8 @@ using FacebookWrapper.ObjectModel;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Windows.Forms;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace FacebookWindowsApp
 {
@@ -35,17 +35,17 @@ namespace FacebookWindowsApp
             m_AppSettings.SaveToFile();
         }
 
-        public List<String> getClassifiers()
+        public List<string> GetClassifiers()
         {
             return m_SentiFactory.ClassifiersList.Keys.ToList();
         }
 
-        public void SetSentimentAnalyzer(String i_classifier)
+        public void SetSentimentAnalyzer(string i_classifier)
         {
             m_SentimentAnalyzer = m_SentiFactory.createSentimentAnalyzer(i_classifier);
         }
 
-        public String getClassifierExplanation()
+        public string GetClassifierExplanation()
         {
             return m_SentimentAnalyzer.ClassifierExplanation;
         }
