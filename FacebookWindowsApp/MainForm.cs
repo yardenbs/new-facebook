@@ -250,6 +250,7 @@ namespace FacebookWindowsApp
 
         private void listBoxClassifiers_SelectedIndexChanged(object sender, EventArgs e)
         {
+            buttonSentiment.Enabled = true;
             m_LogicFacade.SetSentimentAnalyzer(((String)listBoxClassifiers.SelectedItem).Replace(" ", ""));
             textBoxExplanation.Clear();
             listBoxPositive.Items.Clear();

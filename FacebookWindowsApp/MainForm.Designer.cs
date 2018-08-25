@@ -431,6 +431,7 @@
             // 
             // buttonSentiment
             // 
+            this.buttonSentiment.Enabled = false;
             this.buttonSentiment.Location = new System.Drawing.Point(148, 174);
             this.buttonSentiment.Name = "buttonSentiment";
             this.buttonSentiment.Size = new System.Drawing.Size(75, 23);
@@ -679,7 +680,7 @@
             this.labelEvents.Location = new System.Drawing.Point(7, 546);
             this.labelEvents.Name = "labelEvents";
             this.labelEvents.Padding = new System.Windows.Forms.Padding(0, 0, 106, 0);
-            this.labelEvents.Size = new System.Drawing.Size(464, 24);
+            this.labelEvents.Size = new System.Drawing.Size(449, 24);
             this.labelEvents.TabIndex = 24;
             this.labelEvents.Text = "events";
             this.labelEvents.UseMnemonic = false;
@@ -719,7 +720,7 @@
             this.labelAlbums.Location = new System.Drawing.Point(5, 769);
             this.labelAlbums.Name = "labelAlbums";
             this.labelAlbums.Padding = new System.Windows.Forms.Padding(0, 0, 106, 0);
-            this.labelAlbums.Size = new System.Drawing.Size(462, 25);
+            this.labelAlbums.Size = new System.Drawing.Size(447, 25);
             this.labelAlbums.TabIndex = 21;
             this.labelAlbums.Text = "albums";
             this.labelAlbums.UseMnemonic = false;
@@ -734,7 +735,7 @@
             this.labelPosts.Location = new System.Drawing.Point(7, 432);
             this.labelPosts.Name = "labelPosts";
             this.labelPosts.Padding = new System.Windows.Forms.Padding(0, 0, 106, 0);
-            this.labelPosts.Size = new System.Drawing.Size(464, 24);
+            this.labelPosts.Size = new System.Drawing.Size(449, 24);
             this.labelPosts.TabIndex = 20;
             this.labelPosts.Text = "posts";
             this.labelPosts.UseMnemonic = false;
@@ -801,7 +802,7 @@
             this.listBoxEvents.Location = new System.Drawing.Point(7, 574);
             this.listBoxEvents.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listBoxEvents.Name = "listBoxEvents";
-            this.listBoxEvents.Size = new System.Drawing.Size(464, 51);
+            this.listBoxEvents.Size = new System.Drawing.Size(449, 51);
             this.listBoxEvents.TabIndex = 11;
             // 
             // listBoxPosts
@@ -819,7 +820,7 @@
             this.listBoxPosts.Location = new System.Drawing.Point(7, 459);
             this.listBoxPosts.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listBoxPosts.Name = "listBoxPosts";
-            this.listBoxPosts.Size = new System.Drawing.Size(467, 47);
+            this.listBoxPosts.Size = new System.Drawing.Size(452, 47);
             this.listBoxPosts.TabIndex = 10;
             // 
             // buttonPost
@@ -844,7 +845,7 @@
             this.textBoxPost.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxPost.Multiline = true;
             this.textBoxPost.Name = "textBoxPost";
-            this.textBoxPost.Size = new System.Drawing.Size(250, 39);
+            this.textBoxPost.Size = new System.Drawing.Size(235, 39);
             this.textBoxPost.TabIndex = 5;
             // 
             // pictureBoxFriend
@@ -868,7 +869,7 @@
             this.labelFriends.Location = new System.Drawing.Point(7, 218);
             this.labelFriends.Name = "labelFriends";
             this.labelFriends.Padding = new System.Windows.Forms.Padding(0, 0, 106, 0);
-            this.labelFriends.Size = new System.Drawing.Size(464, 24);
+            this.labelFriends.Size = new System.Drawing.Size(449, 24);
             this.labelFriends.TabIndex = 3;
             this.labelFriends.Text = "friends";
             this.labelFriends.UseMnemonic = false;

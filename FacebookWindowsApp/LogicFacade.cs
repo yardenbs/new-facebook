@@ -13,7 +13,6 @@ namespace FacebookWindowsApp
         private AppSettings m_AppSettings;
         private MemoryGame m_MemoryGame;
         private SentimentAnalyzer m_SentimentAnalyzer;
-        private SentimentAnalyzerFactory m_SentiFactory = new SentimentAnalyzerFactory();
 
         public User LoggedInUser { get; set; }
 
@@ -37,12 +36,12 @@ namespace FacebookWindowsApp
 
         public List<string> GetClassifiers()
         {
-            return m_SentiFactory.ClassifiersList.Keys.ToList();
+            return SentimentAnalyzerFactory.ClassifiersList.Keys.ToList();
         }
 
         public void SetSentimentAnalyzer(string i_classifier)
         {
-            m_SentimentAnalyzer = m_SentiFactory.createSentimentAnalyzer(i_classifier);
+            m_SentimentAnalyzer = SentimentAnalyzerFactory.createSentimentAnalyzer(i_classifier);
         }
 
         public string GetClassifierExplanation()

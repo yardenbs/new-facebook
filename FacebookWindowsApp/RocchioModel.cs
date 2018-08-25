@@ -7,7 +7,6 @@ namespace FacebookWindowsApp
     {
         //using Rocchio Algorithm
         private List<float> m_Centroid_Neg;
-
         private List<float> m_Centroid_Pos;
 
         public RocchioModel()

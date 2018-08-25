@@ -4,17 +4,12 @@ using System.Reflection;
 
 namespace FacebookWindowsApp
 {
-    internal class SentimentAnalyzerFactory
+    internal static class SentimentAnalyzerFactory
     {
-        public Dictionary<String, ConstructorInfo> ClassifiersList { get; private set; }
-
-        public SentimentAnalyzerFactory()
-        {
-            loadClassifiers();
-        }
+        public static  Dictionary<String, ConstructorInfo> ClassifiersList { get; private set; }
 
         // Use reflection to retrieve all classifiers in the App Domain
-        private void loadClassifiers()
+        private static void loadClassifiers()
         {
             ClassifiersList = new Dictionary<String, ConstructorInfo>();
 
@@ -31,17 +26,13 @@ namespace FacebookWindowsApp
             }
         }
 
-        public SentimentAnalyzer createSentimentAnalyzer(String i_classifierType)
+        public static SentimentAnalyzer createSentimentAnalyzer(String i_classifierType)
         {
             ConstructorInfo ret = null;
 
-            if (ClassifiersList.TryGetValue(i_classifierType, out ret))
-            {
-                return ret.Invoke(new Object[] { }) as SentimentAnalyzer;
-            }
+            ClassifiersList.TryGetValue(i_classifierType, out ret);
 
-            // default:
-            return new RocchioModel();
+            return ret.Invoke(new Object[] { }) as SentimentAnalyzer;
         }
     }
 }
