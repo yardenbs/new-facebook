@@ -16,6 +16,18 @@ namespace FacebookWindowsApp
             m_Centroid_Pos = getPosVecFromFile();
         }
 
+        public override bool Predict(string i_Sentence)
+        {
+            Vec vec = new Vec(i_Sentence);
+
+            return (calculateVecDistance(vec, new Vec(m_Centroid_Neg)) - 0.5 < calculateVecDistance(vec, new Vec(m_Centroid_Pos))) ? false : true;
+        }
+
+        protected override void setExplanation()
+        {
+            this.ClassifierExplanation = FacebookWindowsApp.Resource.RocchioExplanation;
+        }
+
         private List<float> getNegVecFromFile()
         {
             List<float> res = new List<float>();
@@ -47,14 +59,7 @@ namespace FacebookWindowsApp
 
             return res;
         }
-
-        public override bool Predict(string i_Sentence)
-        {
-            Vec vec = new Vec(i_Sentence);
-
-            return (calculateVecDistance(vec, new Vec(m_Centroid_Neg)) - 0.5 < calculateVecDistance(vec, new Vec(m_Centroid_Pos))) ? false : true;
-        }
-
+        
         private double calculateVecDistance(Vec i_Vec1, Vec i_Vec2)
         {
             double sum = sumOfSquares(i_Vec1, i_Vec2);
@@ -73,11 +78,6 @@ namespace FacebookWindowsApp
             }
 
             return sum;
-        }
-
-        protected override void setExplanation()
-        {
-            this.ClassifierExplanation = FacebookWindowsApp.Resource.RocchioExplanation;
         }
     }
 }

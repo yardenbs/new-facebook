@@ -13,6 +13,15 @@ namespace FacebookWindowsApp
             loadClassifiers();
         }
 
+        public static SentimentAnalyzer createSentimentAnalyzer(String i_ClassifierType)
+        {
+            ConstructorInfo ret = null;
+
+            ClassifiersList.TryGetValue(i_ClassifierType, out ret);
+
+            return ret.Invoke(new Object[] { }) as SentimentAnalyzer;
+        }
+
         // Use reflection to retrieve all classifiers in the App Domain
         private static void loadClassifiers()
         {
@@ -29,15 +38,6 @@ namespace FacebookWindowsApp
                     }
                 }
             }
-        }
-
-        public static SentimentAnalyzer createSentimentAnalyzer(String i_classifierType)
-        {
-            ConstructorInfo ret = null;
-
-            ClassifiersList.TryGetValue(i_classifierType, out ret);
-
-            return ret.Invoke(new Object[] { }) as SentimentAnalyzer;
         }
     }
 }

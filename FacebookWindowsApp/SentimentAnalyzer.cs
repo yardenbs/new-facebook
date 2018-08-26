@@ -16,6 +16,10 @@ namespace FacebookWindowsApp
             setExplanation();
         }
 
+        public abstract bool Predict(string i_Sentence);
+
+        protected abstract void setExplanation();
+
         private List<string> createCorpus()
         {
             List<string> res = new List<string>();
@@ -91,9 +95,5 @@ namespace FacebookWindowsApp
                 return res;
             }
         }
-
-        protected abstract void setExplanation();
-
-        public abstract bool Predict(string i_Sentence);
     }
 }

@@ -39,9 +39,9 @@ namespace FacebookWindowsApp
             return SentimentAnalyzerFactory.ClassifiersList.Keys.ToList();
         }
 
-        public void SetSentimentAnalyzer(string i_classifier)
+        public void SetSentimentAnalyzer(string i_Classifier)
         {
-            m_SentimentAnalyzer = SentimentAnalyzerFactory.createSentimentAnalyzer(i_classifier);
+            m_SentimentAnalyzer = SentimentAnalyzerFactory.createSentimentAnalyzer(i_Classifier);
         }
 
         public string GetClassifierExplanation()
@@ -78,8 +78,6 @@ namespace FacebookWindowsApp
         {
             if (m_MemoryGame == null)
             {
-                Size clientSize = i_MovingButtons[0].ClientSize;
-
                 m_MemoryGame = new MemoryGame(i_ClientSize, LoggedInUser.Friends, i_MovingButtons);
                 m_MemoryGame.GameEnded += i_MainForm_GameEnded;
             }

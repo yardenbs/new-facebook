@@ -200,14 +200,14 @@ namespace FacebookWindowsApp
             populateLists(analyzedPosts);
         }
 
-        private void populateLists(Dictionary<string, bool> i_analyzedPosts)
+        private void populateLists(Dictionary<string, bool> i_AnalyzedPosts)
         {
             ListBox listBox;
 
             listBoxPositive.Items.Clear();
             listBoxNegative.Items.Clear();
 
-            foreach (KeyValuePair<string, bool> pair in i_analyzedPosts)
+            foreach (KeyValuePair<string, bool> pair in i_AnalyzedPosts)
             {
                 if (pair.Value == true)
                 {
@@ -236,11 +236,11 @@ namespace FacebookWindowsApp
             }
         }
 
-        private String convertCamelCaseToWords(string classifierName)
+        private String convertCamelCaseToWords(string i_ClassifierName)
         {
             return System.Text.RegularExpressions.Regex.Replace(
                 System.Text.RegularExpressions.Regex.Replace(
-                    classifierName,
+                    i_ClassifierName,
                     @"(\P{Ll})(\P{Ll}\p{Ll})",
                     "$1 $2"
                 ),
@@ -282,7 +282,7 @@ namespace FacebookWindowsApp
             }
             finally
             {
-                textBoxPost.Invoke( new Action (() => textBoxPost.Clear()));
+                textBoxPost.Invoke(new Action(() => textBoxPost.Clear()));
             }
         }
     }

@@ -5,12 +5,24 @@ namespace FacebookWindowsApp
     internal class SvmModel : SentimentAnalyzer
     {
         //using SVM classifier
-        private Vec m_trainedSvmModel;
+        private Vec m_TrainedSvmModel;
 
         public SvmModel()
         {
             Name = this.GetType().Name;
-            m_trainedSvmModel = getSvmModelFromFile();
+            m_TrainedSvmModel = getSvmModelFromFile();
+        }
+        
+        public override bool Predict(string i_Sentence)
+        {
+            Vec vec = new Vec(i_Sentence);
+
+            return calculateDotProduct(vec, m_TrainedSvmModel) - 0.5 > 0 ? true : false;
+        }
+
+        protected override void setExplanation()
+        {
+            this.ClassifierExplanation = FacebookWindowsApp.Resource.SvmExplanation;
         }
 
         private Vec getSvmModelFromFile()
@@ -29,12 +41,6 @@ namespace FacebookWindowsApp
             return new Vec(res);
         }
 
-        public override bool Predict(string i_Sentence)
-        {
-            Vec vec = new Vec(i_Sentence);
-
-            return calculateDotProduct(vec, m_trainedSvmModel) - 0.5 > 0 ? true : false;
-        }
 
         private double calculateDotProduct(Vec i_Vec1, Vec i_Vec2)
         {
@@ -47,11 +53,6 @@ namespace FacebookWindowsApp
             }
 
             return sum;
-        }
-
-        protected override void setExplanation()
-        {
-            this.ClassifierExplanation = FacebookWindowsApp.Resource.SvmExplanation;
         }
     }
 }
