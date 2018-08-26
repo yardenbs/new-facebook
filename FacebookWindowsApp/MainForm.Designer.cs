@@ -97,6 +97,8 @@
             this.timerGame = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorkerUserInfo = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerPost = new System.ComponentModel.BackgroundWorker();
+            this.targetUsersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.postsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             birthdayLabel = new System.Windows.Forms.Label();
             emailLabel = new System.Windows.Forms.Label();
             cityLabel = new System.Windows.Forms.Label();
@@ -121,6 +123,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSelectedAlbum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.targetUsersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.postsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // birthdayLabel
@@ -244,8 +248,6 @@
             // 
             this.splitContainer.Panel2.AutoScroll = true;
             this.splitContainer.Panel2.BackColor = System.Drawing.Color.Black;
-            this.splitContainer.Panel2.Controls.Add(this.panelFeature1);
-            this.splitContainer.Panel2.Controls.Add(this.panelFeature2);
             this.splitContainer.Panel2.Controls.Add(this.panel3);
             this.splitContainer.Panel2.Controls.Add(this.panel2);
             this.splitContainer.Panel2.Controls.Add(this.panel1);
@@ -352,8 +354,7 @@
             this.panelFeature1.Controls.Add(this.listBoxNegative);
             this.panelFeature1.Controls.Add(this.listBoxPositive);
             this.panelFeature1.Controls.Add(this.buttonSentiment);
-            this.panelFeature1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelFeature1.Location = new System.Drawing.Point(0, 0);
+            this.panelFeature1.Location = new System.Drawing.Point(35, 38);
             this.panelFeature1.Name = "panelFeature1";
             this.panelFeature1.Size = new System.Drawing.Size(379, 1040);
             this.panelFeature1.TabIndex = 25;
@@ -444,13 +445,13 @@
             // 
             this.panelFeature2.AutoScroll = true;
             this.panelFeature2.BackColor = System.Drawing.Color.LimeGreen;
+            this.panelFeature2.Controls.Add(this.panelFeature1);
             this.panelFeature2.Controls.Add(this.labelMemoryGame);
             this.panelFeature2.Controls.Add(this.buttonMemory2);
             this.panelFeature2.Controls.Add(this.buttonMemory1);
             this.panelFeature2.Controls.Add(this.buttonMemory3);
             this.panelFeature2.Controls.Add(this.buttonStartMemoryGame);
-            this.panelFeature2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelFeature2.Location = new System.Drawing.Point(0, 0);
+            this.panelFeature2.Location = new System.Drawing.Point(117, 53);
             this.panelFeature2.Name = "panelFeature2";
             this.panelFeature2.Size = new System.Drawing.Size(379, 1040);
             this.panelFeature2.TabIndex = 26;
@@ -574,6 +575,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.panel2.Controls.Add(this.panelFeature2);
             this.panel2.Controls.Add(cityLabel);
             this.panel2.Controls.Add(this.cityTextBox);
             this.panel2.Controls.Add(countryLabel);
@@ -680,7 +682,7 @@
             this.labelEvents.Location = new System.Drawing.Point(7, 546);
             this.labelEvents.Name = "labelEvents";
             this.labelEvents.Padding = new System.Windows.Forms.Padding(0, 0, 106, 0);
-            this.labelEvents.Size = new System.Drawing.Size(419, 24);
+            this.labelEvents.Size = new System.Drawing.Size(404, 24);
             this.labelEvents.TabIndex = 24;
             this.labelEvents.Text = "events";
             this.labelEvents.UseMnemonic = false;
@@ -720,7 +722,7 @@
             this.labelAlbums.Location = new System.Drawing.Point(5, 769);
             this.labelAlbums.Name = "labelAlbums";
             this.labelAlbums.Padding = new System.Windows.Forms.Padding(0, 0, 106, 0);
-            this.labelAlbums.Size = new System.Drawing.Size(417, 25);
+            this.labelAlbums.Size = new System.Drawing.Size(402, 25);
             this.labelAlbums.TabIndex = 21;
             this.labelAlbums.Text = "albums";
             this.labelAlbums.UseMnemonic = false;
@@ -735,7 +737,7 @@
             this.labelPosts.Location = new System.Drawing.Point(7, 432);
             this.labelPosts.Name = "labelPosts";
             this.labelPosts.Padding = new System.Windows.Forms.Padding(0, 0, 106, 0);
-            this.labelPosts.Size = new System.Drawing.Size(419, 24);
+            this.labelPosts.Size = new System.Drawing.Size(404, 24);
             this.labelPosts.TabIndex = 20;
             this.labelPosts.Text = "posts";
             this.labelPosts.UseMnemonic = false;
@@ -802,7 +804,7 @@
             this.listBoxEvents.Location = new System.Drawing.Point(7, 574);
             this.listBoxEvents.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listBoxEvents.Name = "listBoxEvents";
-            this.listBoxEvents.Size = new System.Drawing.Size(419, 51);
+            this.listBoxEvents.Size = new System.Drawing.Size(404, 51);
             this.listBoxEvents.TabIndex = 11;
             // 
             // listBoxPosts
@@ -812,6 +814,7 @@
             this.listBoxPosts.BackColor = System.Drawing.SystemColors.InfoText;
             this.listBoxPosts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listBoxPosts.DataSource = this.postBindingSource;
+            this.listBoxPosts.DisplayMember = "Message";
             this.listBoxPosts.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxPosts.ForeColor = System.Drawing.SystemColors.Info;
             this.listBoxPosts.FormattingEnabled = true;
@@ -819,7 +822,7 @@
             this.listBoxPosts.Location = new System.Drawing.Point(7, 459);
             this.listBoxPosts.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listBoxPosts.Name = "listBoxPosts";
-            this.listBoxPosts.Size = new System.Drawing.Size(422, 47);
+            this.listBoxPosts.Size = new System.Drawing.Size(407, 47);
             this.listBoxPosts.TabIndex = 10;
             // 
             // buttonPost
@@ -844,7 +847,7 @@
             this.textBoxPost.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxPost.Multiline = true;
             this.textBoxPost.Name = "textBoxPost";
-            this.textBoxPost.Size = new System.Drawing.Size(205, 39);
+            this.textBoxPost.Size = new System.Drawing.Size(190, 39);
             this.textBoxPost.TabIndex = 5;
             // 
             // pictureBoxFriend
@@ -868,7 +871,7 @@
             this.labelFriends.Location = new System.Drawing.Point(7, 218);
             this.labelFriends.Name = "labelFriends";
             this.labelFriends.Padding = new System.Windows.Forms.Padding(0, 0, 106, 0);
-            this.labelFriends.Size = new System.Drawing.Size(419, 24);
+            this.labelFriends.Size = new System.Drawing.Size(404, 24);
             this.labelFriends.TabIndex = 3;
             this.labelFriends.Text = "friends";
             this.labelFriends.UseMnemonic = false;
@@ -899,6 +902,16 @@
             // backgroundWorkerPost
             // 
             this.backgroundWorkerPost.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerPost_DoWork);
+            // 
+            // targetUsersBindingSource
+            // 
+            this.targetUsersBindingSource.DataMember = "TargetUsers";
+            this.targetUsersBindingSource.DataSource = this.postBindingSource;
+            // 
+            // postsBindingSource
+            // 
+            this.postsBindingSource.DataMember = "Posts";
+            this.postsBindingSource.DataSource = this.userBindingSource;
             // 
             // MainForm
             // 
@@ -942,6 +955,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSelectedAlbum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.targetUsersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.postsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1004,5 +1019,7 @@
         private System.Windows.Forms.DateTimePicker startTimeDateTimePicker;
         private System.ComponentModel.BackgroundWorker backgroundWorkerUserInfo;
         private System.ComponentModel.BackgroundWorker backgroundWorkerPost;
+        private System.Windows.Forms.BindingSource postsBindingSource;
+        private System.Windows.Forms.BindingSource targetUsersBindingSource;
     }
 }
