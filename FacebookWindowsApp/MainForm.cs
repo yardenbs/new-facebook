@@ -277,6 +277,8 @@ namespace FacebookWindowsApp
             }
             catch (Exception)
             {
+                MessageBox.Show("Sorry, it appears Facebook \nhas disabled this feature :(");
+                buttonPost.Invoke(new Action(() => buttonPost.Enabled = false));
             }
             finally
             {
