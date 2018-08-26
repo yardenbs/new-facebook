@@ -6,7 +6,12 @@ namespace FacebookWindowsApp
 {
     internal static class SentimentAnalyzerFactory
     {
-        public static  Dictionary<String, ConstructorInfo> ClassifiersList { get; private set; }
+        public static Dictionary<String, ConstructorInfo> ClassifiersList { get; private set; }
+
+        static SentimentAnalyzerFactory()
+        {
+            loadClassifiers();
+        }
 
         // Use reflection to retrieve all classifiers in the App Domain
         private static void loadClassifiers()

@@ -231,7 +231,8 @@ namespace FacebookWindowsApp
         {
             foreach (String classifierName in m_LogicFacade.GetClassifiers())
             {
-                listBoxClassifiers.Items.Add(convertCamelCaseToWords(classifierName));
+                listBoxClassifiers.Invoke(
+                    new Action(() => listBoxClassifiers.Items.Add(convertCamelCaseToWords(classifierName))));
             }
         }
 
@@ -279,7 +280,7 @@ namespace FacebookWindowsApp
             }
             finally
             {
-                textBoxPost.Clear();
+                textBoxPost.Invoke( new Action (() => textBoxPost.Clear()));
             }
         }
     }
