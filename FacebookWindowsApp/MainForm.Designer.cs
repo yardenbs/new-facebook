@@ -248,6 +248,8 @@
             // 
             this.splitContainer.Panel2.AutoScroll = true;
             this.splitContainer.Panel2.BackColor = System.Drawing.Color.Black;
+            this.splitContainer.Panel2.Controls.Add(this.panelFeature1);
+            this.splitContainer.Panel2.Controls.Add(this.panelFeature2);
             this.splitContainer.Panel2.Controls.Add(this.panel3);
             this.splitContainer.Panel2.Controls.Add(this.panel2);
             this.splitContainer.Panel2.Controls.Add(this.panel1);
@@ -354,7 +356,8 @@
             this.panelFeature1.Controls.Add(this.listBoxNegative);
             this.panelFeature1.Controls.Add(this.listBoxPositive);
             this.panelFeature1.Controls.Add(this.buttonSentiment);
-            this.panelFeature1.Location = new System.Drawing.Point(35, 38);
+            this.panelFeature1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelFeature1.Location = new System.Drawing.Point(0, 0);
             this.panelFeature1.Name = "panelFeature1";
             this.panelFeature1.Size = new System.Drawing.Size(379, 1040);
             this.panelFeature1.TabIndex = 25;
@@ -445,13 +448,13 @@
             // 
             this.panelFeature2.AutoScroll = true;
             this.panelFeature2.BackColor = System.Drawing.Color.LimeGreen;
-            this.panelFeature2.Controls.Add(this.panelFeature1);
             this.panelFeature2.Controls.Add(this.labelMemoryGame);
             this.panelFeature2.Controls.Add(this.buttonMemory2);
             this.panelFeature2.Controls.Add(this.buttonMemory1);
             this.panelFeature2.Controls.Add(this.buttonMemory3);
             this.panelFeature2.Controls.Add(this.buttonStartMemoryGame);
-            this.panelFeature2.Location = new System.Drawing.Point(117, 53);
+            this.panelFeature2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelFeature2.Location = new System.Drawing.Point(0, 0);
             this.panelFeature2.Name = "panelFeature2";
             this.panelFeature2.Size = new System.Drawing.Size(379, 1040);
             this.panelFeature2.TabIndex = 26;
@@ -575,7 +578,6 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.panel2.Controls.Add(this.panelFeature2);
             this.panel2.Controls.Add(cityLabel);
             this.panel2.Controls.Add(this.cityTextBox);
             this.panel2.Controls.Add(countryLabel);
