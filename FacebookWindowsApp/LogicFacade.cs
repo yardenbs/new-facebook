@@ -49,7 +49,7 @@ namespace FacebookWindowsApp
             return m_SentimentAnalyzer.ClassifierExplanation;
         }
 
-        public void AnalyzePosts(Dictionary<string, bool> i_AnalyzedPosts)
+        public void AnalyzePosts(ref Dictionary<string, bool> i_AnalyzedPosts)
         {
             foreach (Post post in LoggedInUser.Posts)
             {

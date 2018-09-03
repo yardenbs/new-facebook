@@ -68,28 +68,21 @@ namespace FacebookWindowsApp
 
             private List<float> vectorize(List<string> i_Tokens)
             {
-                List<float> res = new List<float>();
+                List<float> res = new List<float>(s_Corpus.Count);
 
                 foreach (string word in s_Corpus)
                 {
-                    if (i_Tokens.Contains(word))
-                    {
-                        int frequency = 0;
+                    int frequency = 0;
 
-                        foreach (string tok in i_Tokens)
+                    foreach (string tok in i_Tokens)
+                    {
+                        if (word == tok)
                         {
-                            if (word == tok)
-                            {
-                                frequency++;
-                            }
+                            frequency++;
                         }
+                    }
 
-                        res.Add(frequency);
-                    }
-                    else
-                    {
-                        res.Add(0);
-                    }
+                    res.Add(frequency);
                 }
 
                 return res;

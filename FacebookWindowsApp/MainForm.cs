@@ -196,7 +196,7 @@ namespace FacebookWindowsApp
         {
             Dictionary<string, bool> analyzedPosts = new Dictionary<string, bool>();
 
-            m_LogicFacade.AnalyzePosts(analyzedPosts);
+            m_LogicFacade.AnalyzePosts(ref analyzedPosts);
             populateLists(analyzedPosts);
         }
 
