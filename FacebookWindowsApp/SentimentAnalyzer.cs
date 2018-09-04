@@ -16,7 +16,7 @@ namespace FacebookWindowsApp
             setExplanation();
         }
 
-        public abstract bool Predict(string i_Sentence);
+        public abstract Prediction Predict(string i_Sentence);
 
         protected abstract void setExplanation();
 

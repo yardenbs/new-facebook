@@ -16,11 +16,12 @@ namespace FacebookWindowsApp
             m_Centroid_Pos = getPosVecFromFile();
         }
 
-        public override bool Predict(string i_Sentence)
+        public override Prediction Predict(string i_Sentence)
         {
             Vec vec = new Vec(i_Sentence);
+            bool pred = (calculateVecDistance(vec, new Vec(m_Centroid_Neg)) - 0.5 < calculateVecDistance(vec, new Vec(m_Centroid_Pos))) ? false : true;
 
-            return (calculateVecDistance(vec, new Vec(m_Centroid_Neg)) - 0.5 < calculateVecDistance(vec, new Vec(m_Centroid_Pos))) ? false : true;
+            return new Prediction() { isPositive = pred }; 
         }
 
         protected override void setExplanation()

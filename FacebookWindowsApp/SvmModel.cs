@@ -13,11 +13,13 @@ namespace FacebookWindowsApp
             m_TrainedSvmModel = getSvmModelFromFile();
         }
         
-        public override bool Predict(string i_Sentence)
+        public override Prediction Predict(string i_Sentence)
         {
             Vec vec = new Vec(i_Sentence);
 
-            return calculateDotProduct(vec, m_TrainedSvmModel) - 0.5 > 0 ? true : false;
+            bool pred = calculateDotProduct(vec, m_TrainedSvmModel) - 0.5 > 0 ? true : false;
+
+            return new Prediction() { isPositive = pred };
         }
 
         protected override void setExplanation()

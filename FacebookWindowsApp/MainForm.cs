@@ -193,22 +193,24 @@ namespace FacebookWindowsApp
 
         private void buttonSentiment_Click(object sender, EventArgs e)
         {
-            Dictionary<string, bool> analyzedPosts = new Dictionary<string, bool>();
+            Dictionary<string, Prediction> analyzedPosts = new Dictionary<string, Prediction>();
 
             m_LogicFacade.AnalyzePosts(ref analyzedPosts);
             populateLists(analyzedPosts);
         }
 
-        private void populateLists(Dictionary<string, bool> i_AnalyzedPosts)
+
+
+        private void populateLists(Dictionary<string, Prediction> i_AnalyzedPosts)
         {
             ListBox listBox;
 
             listBoxPositive.Items.Clear();
             listBoxNegative.Items.Clear();
 
-            foreach (KeyValuePair<string, bool> pair in i_AnalyzedPosts)
+            foreach (KeyValuePair<string, Prediction> pair in i_AnalyzedPosts)
             {
-                if (pair.Value == true)
+                if (pair.Value.isPositive == true)
                 {
                     listBox = listBoxPositive;
                 }
@@ -219,6 +221,7 @@ namespace FacebookWindowsApp
 
                 listBox.Items.Add(pair.Key);
             }
+
         }
 
         private void timerGame_Tick(object sender, EventArgs e)
