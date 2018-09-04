@@ -9,8 +9,7 @@ namespace FacebookWindowsApp
     public partial class MainForm : Form
     {
         private LogicFacade m_LogicFacade;
-        private Album m_Album;
-        private static int s_PhotoIdx = 0;
+        private IEnumerator<Photo> m_AlbumIterator;
 
         public User LoggedInUser { get; set; }
 
@@ -130,10 +129,9 @@ namespace FacebookWindowsApp
 
         private void displaySelectedAlbum()
         {
-            m_Album = listBoxAlbums.SelectedItem as Album;
-            if (m_Album.Count != 0)
+            m_AlbumIterator = (listBoxAlbums.SelectedItem as Album).Photos.GetEnumerator();
+            if (m_AlbumIterator.MoveNext())
             {
-                s_PhotoIdx = 0;
                 updateImage();
             }
         }
@@ -141,19 +139,20 @@ namespace FacebookWindowsApp
         private void updateImage()
         {
             pictureBoxSelectedAlbum.Invoke(new Action(() =>
-                                        pictureBoxSelectedAlbum.LoadAsync(m_Album.Photos[s_PhotoIdx].PictureNormalURL)));
+                                        pictureBoxSelectedAlbum.LoadAsync(m_AlbumIterator.Current.PictureNormalURL)));
             labelCountPhotoLikes.Invoke(new Action(() => labelCountPhotoLikes.ResetText()));
             labelCountPhotoLikes.Invoke(new Action(() =>
-                                        labelCountPhotoLikes.Text = m_Album.Photos[s_PhotoIdx].LikedBy.Count.ToString()));
+                                        labelCountPhotoLikes.Text = m_AlbumIterator.Current.LikedBy.Count.ToString()));
         }
 
         private void buttonRightScroll_Click(object sender, EventArgs e)
         {
-            if (m_Album != null)
+            if (!m_AlbumIterator.MoveNext())
             {
-                s_PhotoIdx = (s_PhotoIdx < m_Album.Photos.Count - 1) ? ++s_PhotoIdx : 0;
-                updateImage();
+                m_AlbumIterator.Reset();
+                m_AlbumIterator.MoveNext();
             }
+            updateImage();
         }
 
         private void buttonHomeScreen_Click(object sender, EventArgs e)
