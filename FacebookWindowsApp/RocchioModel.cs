@@ -19,9 +19,13 @@ namespace FacebookWindowsApp
         public override Prediction Predict(string i_Sentence)
         {
             Vec vec = new Vec(i_Sentence);
-            bool pred = (calculateVecDistance(vec, new Vec(m_Centroid_Neg)) - 0.5 < calculateVecDistance(vec, new Vec(m_Centroid_Pos))) ? false : true;
+            double negDist = calculateVecDistance(vec, new Vec(m_Centroid_Neg)) - 0.5;
+            double posDist = calculateVecDistance(vec, new Vec(m_Centroid_Pos));
+            bool pred = (negDist < posDist) ? false : true;
+            double negScore = negDist * 100 / (negDist + posDist);
+            double posScore = posDist * 100 / (negDist + posDist);
 
-            return new Prediction() { isPositive = pred }; 
+            return new Prediction() { isPositive = pred , NegScore = negScore , PosScore = posScore }; 
         }
 
         protected override void setExplanation()

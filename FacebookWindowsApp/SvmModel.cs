@@ -17,9 +17,12 @@ namespace FacebookWindowsApp
         {
             Vec vec = new Vec(i_Sentence);
 
-            bool pred = calculateDotProduct(vec, m_TrainedSvmModel) - 0.5 > 0 ? true : false;
-
-            return new Prediction() { isPositive = pred };
+            double dotProduct = calculateDotProduct(vec, m_TrainedSvmModel) - 0.5;
+            bool pred = dotProduct > 0 ? true : false;
+            double posPred = 100 / (1 + System.Math.Exp((-1) * dotProduct));
+            double negPred = 100 - posPred;
+            
+            return new Prediction() { isPositive = pred , NegScore = negPred, PosScore = posPred};
         }
 
         protected override void setExplanation()

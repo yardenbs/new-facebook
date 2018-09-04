@@ -8,7 +8,7 @@ namespace FacebookWindowsApp
     public class Prediction
     {
         public bool isPositive { get; set; }
-        public float PosScore { get; set; }
-        public float NegScore { get; set; }
+        public double PosScore { get; set; }
+        public double NegScore { get; set; }
     }
 }
