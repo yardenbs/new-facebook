@@ -284,5 +284,31 @@ namespace FacebookWindowsApp
                 textBoxPost.Invoke(new Action(() => textBoxPost.Clear()));
             }
         }
+
+        private void radioButtonAllPosts_CheckedChanged(object sender, EventArgs e)
+        {
+            hideAllPanels();
+            panelAllPosts.Show();
+        }
+
+        private void radioButtonSelectedPost_CheckedChanged(object sender, EventArgs e)
+        {
+            hideAllPanels();
+            panelSelectedPost.Show();
+        }
+
+        private void radioButtonCustomSentence_CheckedChanged(object sender, EventArgs e)
+        {
+            hideAllPanels();
+            panelCustomSentence.Show();
+        }
+
+        private void hideAllPanels()
+        {
+            panelAllPosts.Hide();
+            panelCustomSentence.Hide();
+            panelSelectedPost.Hide();
+        }
+
     }
 }

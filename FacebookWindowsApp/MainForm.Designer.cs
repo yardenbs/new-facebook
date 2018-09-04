@@ -47,14 +47,21 @@
             this.labelUserName = new System.Windows.Forms.Label();
             this.buttonLogout = new System.Windows.Forms.Button();
             this.panelFeature1 = new System.Windows.Forms.Panel();
+            this.panelSelectedPost = new System.Windows.Forms.Panel();
+            this.labelSelectPost = new System.Windows.Forms.Label();
+            this.listBoxselectFromAllPosts = new System.Windows.Forms.ListBox();
+            this.panelAllPosts = new System.Windows.Forms.Panel();
+            this.listBoxPositive = new System.Windows.Forms.ListBox();
+            this.listBoxNegative = new System.Windows.Forms.ListBox();
+            this.labelPositive = new System.Windows.Forms.Label();
+            this.labelNegative = new System.Windows.Forms.Label();
+            this.radioButtonCustomSentence = new System.Windows.Forms.RadioButton();
+            this.radioButtonSelectedPost = new System.Windows.Forms.RadioButton();
+            this.radioButtonAllPosts = new System.Windows.Forms.RadioButton();
             this.labelClassifierExplanation = new System.Windows.Forms.Label();
             this.labelClassifierType = new System.Windows.Forms.Label();
             this.listBoxClassifiers = new System.Windows.Forms.ListBox();
             this.textBoxExplanation = new System.Windows.Forms.TextBox();
-            this.labelNegative = new System.Windows.Forms.Label();
-            this.labelPositive = new System.Windows.Forms.Label();
-            this.listBoxNegative = new System.Windows.Forms.ListBox();
-            this.listBoxPositive = new System.Windows.Forms.ListBox();
             this.buttonSentiment = new System.Windows.Forms.Button();
             this.panelFeature2 = new System.Windows.Forms.Panel();
             this.labelMemoryGame = new System.Windows.Forms.Label();
@@ -99,6 +106,17 @@
             this.backgroundWorkerPost = new System.ComponentModel.BackgroundWorker();
             this.targetUsersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.postsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.labelPosScore = new System.Windows.Forms.Label();
+            this.labelNegScore = new System.Windows.Forms.Label();
+            this.textBoxPosScore = new System.Windows.Forms.TextBox();
+            this.textBoxNegScore = new System.Windows.Forms.TextBox();
+            this.panelCustomSentence = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.labelSubmitText = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             birthdayLabel = new System.Windows.Forms.Label();
             emailLabel = new System.Windows.Forms.Label();
             cityLabel = new System.Windows.Forms.Label();
@@ -113,6 +131,8 @@
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
             this.panelFeature1.SuspendLayout();
+            this.panelSelectedPost.SuspendLayout();
+            this.panelAllPosts.SuspendLayout();
             this.panelFeature2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).BeginInit();
@@ -125,6 +145,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.targetUsersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.postsBindingSource)).BeginInit();
+            this.panelCustomSentence.SuspendLayout();
             this.SuspendLayout();
             // 
             // birthdayLabel
@@ -347,20 +368,133 @@
             // panelFeature1
             // 
             this.panelFeature1.BackColor = System.Drawing.Color.Coral;
+            this.panelFeature1.Controls.Add(this.panelCustomSentence);
+            this.panelFeature1.Controls.Add(this.panelSelectedPost);
+            this.panelFeature1.Controls.Add(this.panelAllPosts);
+            this.panelFeature1.Controls.Add(this.radioButtonCustomSentence);
+            this.panelFeature1.Controls.Add(this.radioButtonSelectedPost);
+            this.panelFeature1.Controls.Add(this.radioButtonAllPosts);
             this.panelFeature1.Controls.Add(this.labelClassifierExplanation);
             this.panelFeature1.Controls.Add(this.labelClassifierType);
             this.panelFeature1.Controls.Add(this.listBoxClassifiers);
             this.panelFeature1.Controls.Add(this.textBoxExplanation);
-            this.panelFeature1.Controls.Add(this.labelNegative);
-            this.panelFeature1.Controls.Add(this.labelPositive);
-            this.panelFeature1.Controls.Add(this.listBoxNegative);
-            this.panelFeature1.Controls.Add(this.listBoxPositive);
             this.panelFeature1.Controls.Add(this.buttonSentiment);
             this.panelFeature1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelFeature1.Location = new System.Drawing.Point(0, 0);
             this.panelFeature1.Name = "panelFeature1";
             this.panelFeature1.Size = new System.Drawing.Size(379, 1040);
             this.panelFeature1.TabIndex = 25;
+            // 
+            // panelSelectedPost
+            // 
+            this.panelSelectedPost.Controls.Add(this.textBoxNegScore);
+            this.panelSelectedPost.Controls.Add(this.textBoxPosScore);
+            this.panelSelectedPost.Controls.Add(this.labelNegScore);
+            this.panelSelectedPost.Controls.Add(this.labelPosScore);
+            this.panelSelectedPost.Controls.Add(this.labelSelectPost);
+            this.panelSelectedPost.Controls.Add(this.listBoxselectFromAllPosts);
+            this.panelSelectedPost.Location = new System.Drawing.Point(3, 229);
+            this.panelSelectedPost.Name = "panelSelectedPost";
+            this.panelSelectedPost.Size = new System.Drawing.Size(382, 179);
+            this.panelSelectedPost.TabIndex = 35;
+            // 
+            // labelSelectPost
+            // 
+            this.labelSelectPost.AutoSize = true;
+            this.labelSelectPost.Location = new System.Drawing.Point(48, 5);
+            this.labelSelectPost.Name = "labelSelectPost";
+            this.labelSelectPost.Size = new System.Drawing.Size(70, 13);
+            this.labelSelectPost.TabIndex = 5;
+            this.labelSelectPost.Text = "select a post:";
+            // 
+            // listBoxselectFromAllPosts
+            // 
+            this.listBoxselectFromAllPosts.FormattingEnabled = true;
+            this.listBoxselectFromAllPosts.Location = new System.Drawing.Point(1, 24);
+            this.listBoxselectFromAllPosts.Name = "listBoxselectFromAllPosts";
+            this.listBoxselectFromAllPosts.Size = new System.Drawing.Size(182, 147);
+            this.listBoxselectFromAllPosts.TabIndex = 5;
+            // 
+            // panelAllPosts
+            // 
+            this.panelAllPosts.Controls.Add(this.listBoxPositive);
+            this.panelAllPosts.Controls.Add(this.listBoxNegative);
+            this.panelAllPosts.Controls.Add(this.labelPositive);
+            this.panelAllPosts.Controls.Add(this.labelNegative);
+            this.panelAllPosts.Location = new System.Drawing.Point(3, 229);
+            this.panelAllPosts.Name = "panelAllPosts";
+            this.panelAllPosts.Size = new System.Drawing.Size(380, 189);
+            this.panelAllPosts.TabIndex = 34;
+            // 
+            // listBoxPositive
+            // 
+            this.listBoxPositive.FormattingEnabled = true;
+            this.listBoxPositive.Location = new System.Drawing.Point(2, 29);
+            this.listBoxPositive.Name = "listBoxPositive";
+            this.listBoxPositive.Size = new System.Drawing.Size(182, 147);
+            this.listBoxPositive.TabIndex = 1;
+            // 
+            // listBoxNegative
+            // 
+            this.listBoxNegative.FormattingEnabled = true;
+            this.listBoxNegative.Location = new System.Drawing.Point(190, 29);
+            this.listBoxNegative.Name = "listBoxNegative";
+            this.listBoxNegative.Size = new System.Drawing.Size(181, 147);
+            this.listBoxNegative.TabIndex = 2;
+            // 
+            // labelPositive
+            // 
+            this.labelPositive.AutoSize = true;
+            this.labelPositive.Location = new System.Drawing.Point(46, 12);
+            this.labelPositive.Name = "labelPositive";
+            this.labelPositive.Size = new System.Drawing.Size(73, 13);
+            this.labelPositive.TabIndex = 3;
+            this.labelPositive.Text = "Positive Posts";
+            // 
+            // labelNegative
+            // 
+            this.labelNegative.AutoSize = true;
+            this.labelNegative.Location = new System.Drawing.Point(229, 10);
+            this.labelNegative.Name = "labelNegative";
+            this.labelNegative.Size = new System.Drawing.Size(79, 13);
+            this.labelNegative.TabIndex = 4;
+            this.labelNegative.Text = "Negative Posts";
+            // 
+            // radioButtonCustomSentence
+            // 
+            this.radioButtonCustomSentence.AutoSize = true;
+            this.radioButtonCustomSentence.Location = new System.Drawing.Point(8, 206);
+            this.radioButtonCustomSentence.Name = "radioButtonCustomSentence";
+            this.radioButtonCustomSentence.Size = new System.Drawing.Size(106, 17);
+            this.radioButtonCustomSentence.TabIndex = 33;
+            this.radioButtonCustomSentence.TabStop = true;
+            this.radioButtonCustomSentence.Text = "custom sentence";
+            this.radioButtonCustomSentence.UseVisualStyleBackColor = true;
+            this.radioButtonCustomSentence.CheckedChanged += new System.EventHandler(this.radioButtonCustomSentence_CheckedChanged);
+            // 
+            // radioButtonSelectedPost
+            // 
+            this.radioButtonSelectedPost.AutoSize = true;
+            this.radioButtonSelectedPost.Location = new System.Drawing.Point(8, 185);
+            this.radioButtonSelectedPost.Name = "radioButtonSelectedPost";
+            this.radioButtonSelectedPost.Size = new System.Drawing.Size(88, 17);
+            this.radioButtonSelectedPost.TabIndex = 32;
+            this.radioButtonSelectedPost.TabStop = true;
+            this.radioButtonSelectedPost.Text = "selected post";
+            this.radioButtonSelectedPost.UseVisualStyleBackColor = true;
+            this.radioButtonSelectedPost.CheckedChanged += new System.EventHandler(this.radioButtonSelectedPost_CheckedChanged);
+            // 
+            // radioButtonAllPosts
+            // 
+            this.radioButtonAllPosts.AutoSize = true;
+            this.radioButtonAllPosts.Location = new System.Drawing.Point(8, 164);
+            this.radioButtonAllPosts.Name = "radioButtonAllPosts";
+            this.radioButtonAllPosts.Size = new System.Drawing.Size(63, 17);
+            this.radioButtonAllPosts.TabIndex = 31;
+            this.radioButtonAllPosts.TabStop = true;
+            this.radioButtonAllPosts.Text = "all posts";
+            this.radioButtonAllPosts.UseVisualStyleBackColor = true;
+            this.radioButtonAllPosts.CheckedChanged += new System.EventHandler(this.radioButtonAllPosts_CheckedChanged);
             // 
             // labelClassifierExplanation
             // 
@@ -399,46 +533,12 @@
             this.textBoxExplanation.Size = new System.Drawing.Size(226, 107);
             this.textBoxExplanation.TabIndex = 27;
             // 
-            // labelNegative
-            // 
-            this.labelNegative.AutoSize = true;
-            this.labelNegative.Location = new System.Drawing.Point(241, 204);
-            this.labelNegative.Name = "labelNegative";
-            this.labelNegative.Size = new System.Drawing.Size(79, 13);
-            this.labelNegative.TabIndex = 4;
-            this.labelNegative.Text = "Negative Posts";
-            // 
-            // labelPositive
-            // 
-            this.labelPositive.AutoSize = true;
-            this.labelPositive.Location = new System.Drawing.Point(58, 206);
-            this.labelPositive.Name = "labelPositive";
-            this.labelPositive.Size = new System.Drawing.Size(73, 13);
-            this.labelPositive.TabIndex = 3;
-            this.labelPositive.Text = "Positive Posts";
-            // 
-            // listBoxNegative
-            // 
-            this.listBoxNegative.FormattingEnabled = true;
-            this.listBoxNegative.Location = new System.Drawing.Point(192, 222);
-            this.listBoxNegative.Name = "listBoxNegative";
-            this.listBoxNegative.Size = new System.Drawing.Size(181, 186);
-            this.listBoxNegative.TabIndex = 2;
-            // 
-            // listBoxPositive
-            // 
-            this.listBoxPositive.FormattingEnabled = true;
-            this.listBoxPositive.Location = new System.Drawing.Point(4, 222);
-            this.listBoxPositive.Name = "listBoxPositive";
-            this.listBoxPositive.Size = new System.Drawing.Size(182, 186);
-            this.listBoxPositive.TabIndex = 1;
-            // 
             // buttonSentiment
             // 
             this.buttonSentiment.Enabled = false;
-            this.buttonSentiment.Location = new System.Drawing.Point(148, 174);
+            this.buttonSentiment.Location = new System.Drawing.Point(137, 178);
             this.buttonSentiment.Name = "buttonSentiment";
-            this.buttonSentiment.Size = new System.Drawing.Size(75, 23);
+            this.buttonSentiment.Size = new System.Drawing.Size(102, 34);
             this.buttonSentiment.TabIndex = 0;
             this.buttonSentiment.Text = "Analyze!";
             this.buttonSentiment.UseVisualStyleBackColor = true;
@@ -684,7 +784,7 @@
             this.labelEvents.Location = new System.Drawing.Point(7, 546);
             this.labelEvents.Name = "labelEvents";
             this.labelEvents.Padding = new System.Windows.Forms.Padding(0, 0, 106, 0);
-            this.labelEvents.Size = new System.Drawing.Size(404, 24);
+            this.labelEvents.Size = new System.Drawing.Size(374, 24);
             this.labelEvents.TabIndex = 24;
             this.labelEvents.Text = "events";
             this.labelEvents.UseMnemonic = false;
@@ -724,7 +824,7 @@
             this.labelAlbums.Location = new System.Drawing.Point(5, 769);
             this.labelAlbums.Name = "labelAlbums";
             this.labelAlbums.Padding = new System.Windows.Forms.Padding(0, 0, 106, 0);
-            this.labelAlbums.Size = new System.Drawing.Size(402, 25);
+            this.labelAlbums.Size = new System.Drawing.Size(372, 25);
             this.labelAlbums.TabIndex = 21;
             this.labelAlbums.Text = "albums";
             this.labelAlbums.UseMnemonic = false;
@@ -739,7 +839,7 @@
             this.labelPosts.Location = new System.Drawing.Point(7, 432);
             this.labelPosts.Name = "labelPosts";
             this.labelPosts.Padding = new System.Windows.Forms.Padding(0, 0, 106, 0);
-            this.labelPosts.Size = new System.Drawing.Size(404, 24);
+            this.labelPosts.Size = new System.Drawing.Size(374, 24);
             this.labelPosts.TabIndex = 20;
             this.labelPosts.Text = "posts";
             this.labelPosts.UseMnemonic = false;
@@ -806,7 +906,7 @@
             this.listBoxEvents.Location = new System.Drawing.Point(7, 574);
             this.listBoxEvents.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listBoxEvents.Name = "listBoxEvents";
-            this.listBoxEvents.Size = new System.Drawing.Size(404, 51);
+            this.listBoxEvents.Size = new System.Drawing.Size(374, 51);
             this.listBoxEvents.TabIndex = 11;
             // 
             // listBoxPosts
@@ -824,7 +924,7 @@
             this.listBoxPosts.Location = new System.Drawing.Point(7, 459);
             this.listBoxPosts.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listBoxPosts.Name = "listBoxPosts";
-            this.listBoxPosts.Size = new System.Drawing.Size(407, 47);
+            this.listBoxPosts.Size = new System.Drawing.Size(377, 47);
             this.listBoxPosts.TabIndex = 10;
             // 
             // buttonPost
@@ -849,7 +949,7 @@
             this.textBoxPost.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxPost.Multiline = true;
             this.textBoxPost.Name = "textBoxPost";
-            this.textBoxPost.Size = new System.Drawing.Size(190, 39);
+            this.textBoxPost.Size = new System.Drawing.Size(160, 39);
             this.textBoxPost.TabIndex = 5;
             // 
             // pictureBoxFriend
@@ -873,7 +973,7 @@
             this.labelFriends.Location = new System.Drawing.Point(7, 218);
             this.labelFriends.Name = "labelFriends";
             this.labelFriends.Padding = new System.Windows.Forms.Padding(0, 0, 106, 0);
-            this.labelFriends.Size = new System.Drawing.Size(404, 24);
+            this.labelFriends.Size = new System.Drawing.Size(374, 24);
             this.labelFriends.TabIndex = 3;
             this.labelFriends.Text = "friends";
             this.labelFriends.UseMnemonic = false;
@@ -915,6 +1015,100 @@
             this.postsBindingSource.DataMember = "Posts";
             this.postsBindingSource.DataSource = this.userBindingSource;
             // 
+            // labelPosScore
+            // 
+            this.labelPosScore.AutoSize = true;
+            this.labelPosScore.Location = new System.Drawing.Point(219, 27);
+            this.labelPosScore.Name = "labelPosScore";
+            this.labelPosScore.Size = new System.Drawing.Size(75, 13);
+            this.labelPosScore.TabIndex = 6;
+            this.labelPosScore.Text = "Positive Score";
+            // 
+            // labelNegScore
+            // 
+            this.labelNegScore.AutoSize = true;
+            this.labelNegScore.Location = new System.Drawing.Point(219, 51);
+            this.labelNegScore.Name = "labelNegScore";
+            this.labelNegScore.Size = new System.Drawing.Size(81, 13);
+            this.labelNegScore.TabIndex = 7;
+            this.labelNegScore.Text = "Negative Score";
+            // 
+            // textBoxPosScore
+            // 
+            this.textBoxPosScore.Location = new System.Drawing.Point(304, 24);
+            this.textBoxPosScore.Name = "textBoxPosScore";
+            this.textBoxPosScore.Size = new System.Drawing.Size(43, 20);
+            this.textBoxPosScore.TabIndex = 8;
+            // 
+            // textBoxNegScore
+            // 
+            this.textBoxNegScore.Location = new System.Drawing.Point(304, 48);
+            this.textBoxNegScore.Name = "textBoxNegScore";
+            this.textBoxNegScore.Size = new System.Drawing.Size(43, 20);
+            this.textBoxNegScore.TabIndex = 9;
+            // 
+            // panelCustomSentence
+            // 
+            this.panelCustomSentence.Controls.Add(this.textBox3);
+            this.panelCustomSentence.Controls.Add(this.textBox1);
+            this.panelCustomSentence.Controls.Add(this.textBox2);
+            this.panelCustomSentence.Controls.Add(this.label1);
+            this.panelCustomSentence.Controls.Add(this.label2);
+            this.panelCustomSentence.Controls.Add(this.labelSubmitText);
+            this.panelCustomSentence.Location = new System.Drawing.Point(2, 226);
+            this.panelCustomSentence.Name = "panelCustomSentence";
+            this.panelCustomSentence.Size = new System.Drawing.Size(382, 179);
+            this.panelCustomSentence.TabIndex = 36;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(304, 48);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(43, 20);
+            this.textBox1.TabIndex = 9;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(304, 24);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(43, 20);
+            this.textBox2.TabIndex = 8;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(219, 51);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Negative Score";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(219, 27);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Positive Score";
+            // 
+            // labelSubmitText
+            // 
+            this.labelSubmitText.AutoSize = true;
+            this.labelSubmitText.Location = new System.Drawing.Point(48, 5);
+            this.labelSubmitText.Name = "labelSubmitText";
+            this.labelSubmitText.Size = new System.Drawing.Size(60, 13);
+            this.labelSubmitText.TabIndex = 5;
+            this.labelSubmitText.Text = "submit text:";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(4, 24);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(180, 96);
+            this.textBox3.TabIndex = 10;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -944,6 +1138,10 @@
             this.splitContainer.ResumeLayout(false);
             this.panelFeature1.ResumeLayout(false);
             this.panelFeature1.PerformLayout();
+            this.panelSelectedPost.ResumeLayout(false);
+            this.panelSelectedPost.PerformLayout();
+            this.panelAllPosts.ResumeLayout(false);
+            this.panelAllPosts.PerformLayout();
             this.panelFeature2.ResumeLayout(false);
             this.panelFeature2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -959,6 +1157,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.targetUsersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.postsBindingSource)).EndInit();
+            this.panelCustomSentence.ResumeLayout(false);
+            this.panelCustomSentence.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1023,5 +1223,23 @@
         private System.ComponentModel.BackgroundWorker backgroundWorkerPost;
         private System.Windows.Forms.BindingSource postsBindingSource;
         private System.Windows.Forms.BindingSource targetUsersBindingSource;
+        private System.Windows.Forms.Panel panelAllPosts;
+        private System.Windows.Forms.RadioButton radioButtonCustomSentence;
+        private System.Windows.Forms.RadioButton radioButtonSelectedPost;
+        private System.Windows.Forms.RadioButton radioButtonAllPosts;
+        private System.Windows.Forms.Panel panelSelectedPost;
+        private System.Windows.Forms.Label labelSelectPost;
+        private System.Windows.Forms.ListBox listBoxselectFromAllPosts;
+        private System.Windows.Forms.Label labelNegScore;
+        private System.Windows.Forms.Label labelPosScore;
+        private System.Windows.Forms.Panel panelCustomSentence;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelSubmitText;
+        private System.Windows.Forms.TextBox textBoxNegScore;
+        private System.Windows.Forms.TextBox textBoxPosScore;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }
