@@ -223,10 +223,7 @@ namespace FacebookWindowsApp
                     }
                     break;
                 case SentiRadio.SELECTED_POST:
-                    if (listBoxSelectPostToAnalyze.SelectedItem != null)
-                    {
-                        analyzedPosts.Add((listBoxSelectPostToAnalyze.SelectedItem as Post).Message, null);
-                    }
+                    analyzedPosts.Add( textBoxPost.Text, null);
                     break;
                 case SentiRadio.CUSTOM_SENTENCE:
                     analyzedPosts.Add( textBoxToAnalyze.Text, null);
@@ -280,8 +277,8 @@ namespace FacebookWindowsApp
         private void radioButtonSelectedPost_CheckedChanged(object sender, EventArgs e)
         {
             this.m_selectedSentiRadio = SentiRadio.SELECTED_POST;
-            populateListBox();
             initPanel(panelSelectedPost);
+            textBoxPostSelect.Text = m_LogicFacade.initPostTextBox();
             displayResultMethod = displayScore;
         }
 
@@ -302,19 +299,6 @@ namespace FacebookWindowsApp
             }
             hideAllPanels();
             pnl.Show();
-        }
-
-        private void populateListBox()
-        {
-            listBoxSelectPostToAnalyze.DisplayMember = "Message";
-
-            foreach (Post post in LoggedInUser.Posts)
-            {
-                if (post.Message != null)
-                {
-                    listBoxSelectPostToAnalyze.Items.Add(post);
-                }
-            }
         }
 
         private void hideAllPanels()
@@ -419,6 +403,11 @@ namespace FacebookWindowsApp
         private void radioButtonCrazyRandom_CheckedChanged(object sender, EventArgs e)
         {
             m_LogicFacade.setNormStrategy("Crazy");
+        }
+
+        private void buttonNextPost_Click(object sender, EventArgs e)
+        {
+            textBoxPostSelect.Text = LogicFacade.getNextPost();
         }
     }
 }

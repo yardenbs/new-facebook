@@ -51,7 +51,6 @@
             this.textBoxToAnalyze = new System.Windows.Forms.TextBox();
             this.labelSubmitText = new System.Windows.Forms.Label();
             this.panelSelectedPost = new System.Windows.Forms.Panel();
-            this.listBoxSelectPostToAnalyze = new System.Windows.Forms.ListBox();
             this.labelSelectPost = new System.Windows.Forms.Label();
             this.panelAllPosts = new System.Windows.Forms.Panel();
             this.listBoxPositive = new System.Windows.Forms.ListBox();
@@ -119,6 +118,8 @@
             this.radioButtonNorm1 = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.radioButtonCrazyRandom = new System.Windows.Forms.RadioButton();
+            this.textBoxPostSelect = new System.Windows.Forms.TextBox();
+            this.buttonNextPost = new System.Windows.Forms.Button();
             birthdayLabel = new System.Windows.Forms.Label();
             emailLabel = new System.Windows.Forms.Label();
             cityLabel = new System.Windows.Forms.Label();
@@ -375,7 +376,6 @@
             this.panelFeature1.Controls.Add(this.panel4);
             this.panelFeature1.Controls.Add(this.panelAllPosts);
             this.panelFeature1.Controls.Add(this.panelScoreBoard);
-            this.panelFeature1.Controls.Add(this.panelCustomSentence);
             this.panelFeature1.Controls.Add(this.panelSelectedPost);
             this.panelFeature1.Controls.Add(this.radioButtonCustomSentence);
             this.panelFeature1.Controls.Add(this.radioButtonSelectedPost);
@@ -395,7 +395,7 @@
             // 
             this.panelCustomSentence.Controls.Add(this.textBoxToAnalyze);
             this.panelCustomSentence.Controls.Add(this.labelSubmitText);
-            this.panelCustomSentence.Location = new System.Drawing.Point(0, 251);
+            this.panelCustomSentence.Location = new System.Drawing.Point(137, 70);
             this.panelCustomSentence.Name = "panelCustomSentence";
             this.panelCustomSentence.Size = new System.Drawing.Size(220, 179);
             this.panelCustomSentence.TabIndex = 36;
@@ -419,27 +419,19 @@
             // 
             // panelSelectedPost
             // 
-            this.panelSelectedPost.Controls.Add(this.listBoxSelectPostToAnalyze);
+            this.panelSelectedPost.Controls.Add(this.buttonNextPost);
+            this.panelSelectedPost.Controls.Add(this.textBoxPostSelect);
             this.panelSelectedPost.Controls.Add(this.labelSelectPost);
+            this.panelSelectedPost.Controls.Add(this.panelCustomSentence);
             this.panelSelectedPost.Location = new System.Drawing.Point(0, 253);
             this.panelSelectedPost.Name = "panelSelectedPost";
             this.panelSelectedPost.Size = new System.Drawing.Size(219, 174);
             this.panelSelectedPost.TabIndex = 35;
             // 
-            // listBoxSelectPostToAnalyze
-            // 
-            this.listBoxSelectPostToAnalyze.DisplayMember = "Description";
-            this.listBoxSelectPostToAnalyze.FormattingEnabled = true;
-            this.listBoxSelectPostToAnalyze.Location = new System.Drawing.Point(5, 21);
-            this.listBoxSelectPostToAnalyze.Name = "listBoxSelectPostToAnalyze";
-            this.listBoxSelectPostToAnalyze.Size = new System.Drawing.Size(205, 147);
-            this.listBoxSelectPostToAnalyze.TabIndex = 10;
-            this.listBoxSelectPostToAnalyze.ValueMember = "Description";
-            // 
             // labelSelectPost
             // 
             this.labelSelectPost.AutoSize = true;
-            this.labelSelectPost.Location = new System.Drawing.Point(48, 5);
+            this.labelSelectPost.Location = new System.Drawing.Point(64, 5);
             this.labelSelectPost.Name = "labelSelectPost";
             this.labelSelectPost.Size = new System.Drawing.Size(70, 13);
             this.labelSelectPost.TabIndex = 5;
@@ -451,7 +443,7 @@
             this.panelAllPosts.Controls.Add(this.listBoxNegative);
             this.panelAllPosts.Controls.Add(this.labelPositive);
             this.panelAllPosts.Controls.Add(this.labelNegative);
-            this.panelAllPosts.Location = new System.Drawing.Point(3, 248);
+            this.panelAllPosts.Location = new System.Drawing.Point(0, 440);
             this.panelAllPosts.Name = "panelAllPosts";
             this.panelAllPosts.Size = new System.Drawing.Size(376, 189);
             this.panelAllPosts.TabIndex = 34;
@@ -1148,6 +1140,25 @@
             this.radioButtonCrazyRandom.UseVisualStyleBackColor = true;
             this.radioButtonCrazyRandom.CheckedChanged += new System.EventHandler(this.radioButtonCrazyRandom_CheckedChanged);
             // 
+            // textBoxPostSelect
+            // 
+            this.textBoxPostSelect.Location = new System.Drawing.Point(6, 23);
+            this.textBoxPostSelect.Name = "textBoxPostSelect";
+            this.textBoxPostSelect.ReadOnly = true;
+            this.textBoxPostSelect.Size = new System.Drawing.Size(191, 20);
+            this.textBoxPostSelect.TabIndex = 37;
+            // 
+            // buttonNextPost
+            // 
+            this.buttonNextPost.DialogResult = System.Windows.Forms.DialogResult.No;
+            this.buttonNextPost.Location = new System.Drawing.Point(7, 50);
+            this.buttonNextPost.Name = "buttonNextPost";
+            this.buttonNextPost.Size = new System.Drawing.Size(75, 23);
+            this.buttonNextPost.TabIndex = 38;
+            this.buttonNextPost.Text = "next post";
+            this.buttonNextPost.UseVisualStyleBackColor = true;
+            this.buttonNextPost.Click += new System.EventHandler(this.buttonNextPost_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1272,7 +1283,6 @@
         private System.Windows.Forms.Panel panelCustomSentence;
         private System.Windows.Forms.Label labelSubmitText;
         private System.Windows.Forms.TextBox textBoxToAnalyze;
-        private System.Windows.Forms.ListBox listBoxSelectPostToAnalyze;
         private System.Windows.Forms.BindingSource postBindingSource;
         private System.Windows.Forms.Panel panelScoreBoard;
         private System.Windows.Forms.TextBox textBoxNeg;
@@ -1285,5 +1295,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton radioButtonNorm1;
         private System.Windows.Forms.RadioButton radioButtonCrazyRandom;
+        private System.Windows.Forms.Button buttonNextPost;
+        private System.Windows.Forms.TextBox textBoxPostSelect;
     }
 }
