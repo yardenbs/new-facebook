@@ -9,9 +9,11 @@ namespace FacebookWindowsApp
         protected static List<string> s_Corpus;
         public String Name { get; protected set; }
         public String ClassifierExplanation { get; protected set; }
+        public Func<int, List<string>, float> NormalizationMethod { get; set; }
 
         public SentimentAnalyzer()
         {
+            NormalizationMethod = (num, lst) => (float)num; 
             s_Corpus = createCorpus();
             setExplanation();
         }
@@ -39,9 +41,11 @@ namespace FacebookWindowsApp
         protected class Vec
         {
             public List<float> Vectr { get; set; }
+            private Func<int, List<string>, float> m_normalizationMethod;
 
-            public Vec(string i_Sentence)
+            public Vec(Func<int, List<string>, float> i_normalizationMethod, string i_Sentence)
             {
+                this.m_normalizationMethod = i_normalizationMethod;
                 Vectr = vectorize(tokenize(i_Sentence));
             }
 
@@ -82,11 +86,16 @@ namespace FacebookWindowsApp
                         }
                     }
 
-                    res.Add(frequency);
+                    res.Add(m_normalizationMethod(frequency, i_Tokens));
                 }
 
                 return res;
             }
+        }
+
+        public int getCorpusSize()
+        {
+            return s_Corpus.Count;
         }
     }
 }

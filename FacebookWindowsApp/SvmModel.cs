@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace FacebookWindowsApp
 {
@@ -15,7 +16,7 @@ namespace FacebookWindowsApp
         
         public override Prediction Predict(string i_Sentence)
         {
-            Vec vec = new Vec(i_Sentence);
+            Vec vec = new Vec(NormalizationMethod, i_Sentence);
 
             double dotProduct = calculateDotProduct(vec, m_TrainedSvmModel) - 0.5;
             bool pred = dotProduct > 0 ? true : false;

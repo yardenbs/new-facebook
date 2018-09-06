@@ -10,8 +10,16 @@ namespace FacebookWindowsApp
     {
         private LogicFacade m_LogicFacade;
         private IEnumerator<Photo> m_AlbumIterator;
-
         public User LoggedInUser { get; set; }
+        private SentiRadio m_selectedSentiRadio;
+        private Action<Dictionary<string, Prediction>> displayResultMethod;
+
+        enum SentiRadio
+        {
+            ALL_POSTS,
+            SELECTED_POST,
+            CUSTOM_SENTENCE,
+        }
 
         public MainForm()
         {
@@ -195,11 +203,36 @@ namespace FacebookWindowsApp
         {
             Dictionary<string, Prediction> analyzedPosts = new Dictionary<string, Prediction>();
 
+            initDict(ref analyzedPosts);
+
             m_LogicFacade.AnalyzePosts(ref analyzedPosts);
-            populateLists(analyzedPosts);
+            displayResultMethod(analyzedPosts);
         }
 
-
+        private void initDict(ref Dictionary<string, Prediction> analyzedPosts)
+        {
+            switch (m_selectedSentiRadio)
+            {
+                case SentiRadio.ALL_POSTS:
+                    foreach ( Post post in LoggedInUser.Posts)
+                    {
+                        if (post.Message != null)
+                        {
+                            analyzedPosts.Add(post.Message, null);
+                        }
+                    }
+                    break;
+                case SentiRadio.SELECTED_POST:
+                    if (listBoxSelectPostToAnalyze.SelectedItem != null)
+                    {
+                        analyzedPosts.Add((listBoxSelectPostToAnalyze.SelectedItem as Post).Message, null);
+                    }
+                    break;
+                case SentiRadio.CUSTOM_SENTENCE:
+                    analyzedPosts.Add( textBoxToAnalyze.Text, null);
+                    break;
+            }
+        }
 
         private void populateLists(Dictionary<string, Prediction> i_AnalyzedPosts)
         {
@@ -222,6 +255,73 @@ namespace FacebookWindowsApp
                 listBox.Items.Add(pair.Key);
             }
 
+        }
+
+        private void radioButtonAllPosts_CheckedChanged(object sender, EventArgs e)
+        {
+            this.m_selectedSentiRadio = SentiRadio.ALL_POSTS;
+            initPanel(panelAllPosts);
+            displayResultMethod = populateLists;
+        }
+
+        private void displayScore(Dictionary<string, Prediction> i_AnalyzedPost)
+        {
+            Prediction pred = new Prediction();
+
+            foreach (string item in i_AnalyzedPost.Keys)
+            {
+                pred = i_AnalyzedPost[item];
+            }
+
+            textBoxPos.Text = pred.PosScore.ToString();
+            textBoxNeg.Text = pred.NegScore.ToString();
+        }
+
+        private void radioButtonSelectedPost_CheckedChanged(object sender, EventArgs e)
+        {
+            this.m_selectedSentiRadio = SentiRadio.SELECTED_POST;
+            populateListBox();
+            initPanel(panelSelectedPost);
+            displayResultMethod = displayScore;
+        }
+
+        private void radioButtonCustomSentence_CheckedChanged(object sender, EventArgs e)
+        {
+            this.m_selectedSentiRadio = SentiRadio.CUSTOM_SENTENCE;
+            initPanel(panelCustomSentence);
+            displayResultMethod = displayScore;
+        }
+
+        private void initPanel(Panel pnl)
+        {
+            pnl.Update();
+
+            if (listBoxClassifiers.SelectedValue != null)
+            {
+                buttonSentiment.Enabled = true;
+            }
+            hideAllPanels();
+            pnl.Show();
+        }
+
+        private void populateListBox()
+        {
+            listBoxSelectPostToAnalyze.DisplayMember = "Message";
+
+            foreach (Post post in LoggedInUser.Posts)
+            {
+                if (post.Message != null)
+                {
+                    listBoxSelectPostToAnalyze.Items.Add(post);
+                }
+            }
+        }
+
+        private void hideAllPanels()
+        {
+            panelAllPosts.Hide();
+            panelCustomSentence.Hide();
+            panelSelectedPost.Hide();
         }
 
         private void timerGame_Tick(object sender, EventArgs e)
@@ -253,12 +353,25 @@ namespace FacebookWindowsApp
 
         private void listBoxClassifiers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            buttonSentiment.Enabled = true;
+            if ( radioButtonAllPosts.Checked || radioButtonCustomSentence.Checked || radioButtonSelectedPost.Checked)
+            {
+                buttonSentiment.Enabled = true;
+            }
+
+            enableNormRadioBtns();
             m_LogicFacade.SetSentimentAnalyzer(((String)listBoxClassifiers.SelectedItem).Replace(" ", ""));
             textBoxExplanation.Clear();
             listBoxPositive.Items.Clear();
             listBoxNegative.Items.Clear();
             textBoxExplanation.Text = m_LogicFacade.GetClassifierExplanation();
+        }
+
+        private void enableNormRadioBtns()
+        {
+            radioButtonNorm1.Enabled = true;
+            radioButtonActualFreq.Enabled = true;
+            radioButtonBinary.Enabled = true;
+            radioButtonCrazyRandom.Enabled = true;
         }
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -288,30 +401,24 @@ namespace FacebookWindowsApp
             }
         }
 
-        private void radioButtonAllPosts_CheckedChanged(object sender, EventArgs e)
+        private void radioButtonBinary_CheckedChanged(object sender, EventArgs e)
         {
-            hideAllPanels();
-            panelAllPosts.Show();
+            m_LogicFacade.setNormStrategy("Binary");
         }
 
-        private void radioButtonSelectedPost_CheckedChanged(object sender, EventArgs e)
+        private void radioButtonActualFreq_CheckedChanged(object sender, EventArgs e)
         {
-            hideAllPanels();
-            panelSelectedPost.Show();
+            m_LogicFacade.setNormStrategy("Actual");
         }
 
-        private void radioButtonCustomSentence_CheckedChanged(object sender, EventArgs e)
+        private void radioButtonNorm1_CheckedChanged(object sender, EventArgs e)
         {
-            hideAllPanels();
-            panelCustomSentence.Show();
+            m_LogicFacade.setNormStrategy("Norm1");
         }
 
-        private void hideAllPanels()
+        private void radioButtonCrazyRandom_CheckedChanged(object sender, EventArgs e)
         {
-            panelAllPosts.Hide();
-            panelCustomSentence.Hide();
-            panelSelectedPost.Hide();
+            m_LogicFacade.setNormStrategy("Crazy");
         }
-
     }
 }

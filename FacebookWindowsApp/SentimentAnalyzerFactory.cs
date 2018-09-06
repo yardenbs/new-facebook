@@ -18,10 +18,10 @@ namespace FacebookWindowsApp
             ConstructorInfo ret = null;
 
             ClassifiersList.TryGetValue(i_ClassifierType, out ret);
-
-            return ret.Invoke(new Object[] { }) as SentimentAnalyzer;
+            
+            return ret.Invoke(new object[]{  }) as SentimentAnalyzer;
         }
-
+        
         // Use reflection to retrieve all classifiers in the App Domain
         private static void loadClassifiers()
         {

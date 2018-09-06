@@ -13,6 +13,7 @@ namespace FacebookWindowsApp
         private AppSettings m_AppSettings;
         private MemoryGame m_MemoryGame;
         private SentimentAnalyzer m_SentimentAnalyzer;
+        //private Func<>
 
         public User LoggedInUser { get; set; }
 
@@ -51,15 +52,14 @@ namespace FacebookWindowsApp
 
         public void AnalyzePosts(ref Dictionary<string, Prediction> i_AnalyzedPosts)
         {
-            foreach (Post post in LoggedInUser.Posts)
-            {
-                if (post.Message == null)
-                {
-                    continue;
-                }
+            Dictionary<string, Prediction> result = new Dictionary<string, Prediction>(i_AnalyzedPosts.Count);
 
-                i_AnalyzedPosts.Add(post.Message, m_SentimentAnalyzer.Predict(post.Message));
+            foreach (string str in i_AnalyzedPosts.Keys)
+            {
+                result[str] = m_SentimentAnalyzer.Predict(str);
             }
+
+            i_AnalyzedPosts = result;
         }
 
         public void Login()
@@ -110,6 +110,27 @@ namespace FacebookWindowsApp
             else
             {
                 LoggedInUser = loginForm.LoggedInUser;
+            }
+        }
+
+        internal void setNormStrategy(string stratName)
+        {
+            switch (stratName)
+            {
+                case "Binary":
+                    m_SentimentAnalyzer.NormalizationMethod = (num, lst) => num > 0 ? 1.0f : 0.0f;
+                    break;
+                case "Actual":
+                    m_SentimentAnalyzer.NormalizationMethod = (num, lst) => (float)num;
+                    break;
+                case "Norm1":
+                    m_SentimentAnalyzer.NormalizationMethod = (num, lst) => (float)num/lst.Count + num;
+                    break;
+                case "Crazy":
+                default:
+                    Random rand = new Random();
+                    m_SentimentAnalyzer.NormalizationMethod = (num, lst) => (float)rand.NextDouble();
+                    break;
             }
         }
     }

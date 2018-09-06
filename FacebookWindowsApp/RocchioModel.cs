@@ -18,7 +18,7 @@ namespace FacebookWindowsApp
 
         public override Prediction Predict(string i_Sentence)
         {
-            Vec vec = new Vec(i_Sentence);
+            Vec vec = new Vec(NormalizationMethod, i_Sentence);
             double negDist = calculateVecDistance(vec, new Vec(m_Centroid_Neg)) - 0.5;
             double posDist = calculateVecDistance(vec, new Vec(m_Centroid_Pos));
             bool pred = (negDist < posDist) ? false : true;
