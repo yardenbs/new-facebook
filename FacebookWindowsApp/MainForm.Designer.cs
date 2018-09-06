@@ -395,7 +395,7 @@
             // 
             this.panelCustomSentence.Controls.Add(this.textBoxToAnalyze);
             this.panelCustomSentence.Controls.Add(this.labelSubmitText);
-            this.panelCustomSentence.Location = new System.Drawing.Point(0, 232);
+            this.panelCustomSentence.Location = new System.Drawing.Point(0, 251);
             this.panelCustomSentence.Name = "panelCustomSentence";
             this.panelCustomSentence.Size = new System.Drawing.Size(220, 179);
             this.panelCustomSentence.TabIndex = 36;
@@ -421,7 +421,7 @@
             // 
             this.panelSelectedPost.Controls.Add(this.listBoxSelectPostToAnalyze);
             this.panelSelectedPost.Controls.Add(this.labelSelectPost);
-            this.panelSelectedPost.Location = new System.Drawing.Point(0, 234);
+            this.panelSelectedPost.Location = new System.Drawing.Point(0, 253);
             this.panelSelectedPost.Name = "panelSelectedPost";
             this.panelSelectedPost.Size = new System.Drawing.Size(219, 174);
             this.panelSelectedPost.TabIndex = 35;
@@ -451,7 +451,7 @@
             this.panelAllPosts.Controls.Add(this.listBoxNegative);
             this.panelAllPosts.Controls.Add(this.labelPositive);
             this.panelAllPosts.Controls.Add(this.labelNegative);
-            this.panelAllPosts.Location = new System.Drawing.Point(3, 229);
+            this.panelAllPosts.Location = new System.Drawing.Point(3, 248);
             this.panelAllPosts.Name = "panelAllPosts";
             this.panelAllPosts.Size = new System.Drawing.Size(376, 189);
             this.panelAllPosts.TabIndex = 34;
@@ -461,7 +461,7 @@
             this.listBoxPositive.FormattingEnabled = true;
             this.listBoxPositive.Location = new System.Drawing.Point(2, 29);
             this.listBoxPositive.Name = "listBoxPositive";
-            this.listBoxPositive.Size = new System.Drawing.Size(182, 147);
+            this.listBoxPositive.Size = new System.Drawing.Size(182, 134);
             this.listBoxPositive.TabIndex = 1;
             // 
             // listBoxNegative
@@ -469,7 +469,7 @@
             this.listBoxNegative.FormattingEnabled = true;
             this.listBoxNegative.Location = new System.Drawing.Point(190, 29);
             this.listBoxNegative.Name = "listBoxNegative";
-            this.listBoxNegative.Size = new System.Drawing.Size(181, 147);
+            this.listBoxNegative.Size = new System.Drawing.Size(181, 134);
             this.listBoxNegative.TabIndex = 2;
             // 
             // labelPositive
@@ -546,7 +546,7 @@
             this.listBoxClassifiers.FormattingEnabled = true;
             this.listBoxClassifiers.Location = new System.Drawing.Point(9, 45);
             this.listBoxClassifiers.Name = "listBoxClassifiers";
-            this.listBoxClassifiers.Size = new System.Drawing.Size(129, 108);
+            this.listBoxClassifiers.Size = new System.Drawing.Size(129, 95);
             this.listBoxClassifiers.TabIndex = 28;
             this.listBoxClassifiers.SelectedIndexChanged += new System.EventHandler(this.listBoxClassifiers_SelectedIndexChanged);
             // 
@@ -557,13 +557,13 @@
             this.textBoxExplanation.Name = "textBoxExplanation";
             this.textBoxExplanation.ReadOnly = true;
             this.textBoxExplanation.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxExplanation.Size = new System.Drawing.Size(226, 86);
+            this.textBoxExplanation.Size = new System.Drawing.Size(226, 95);
             this.textBoxExplanation.TabIndex = 27;
             // 
             // buttonSentiment
             // 
             this.buttonSentiment.Enabled = false;
-            this.buttonSentiment.Location = new System.Drawing.Point(124, 177);
+            this.buttonSentiment.Location = new System.Drawing.Point(135, 179);
             this.buttonSentiment.Name = "buttonSentiment";
             this.buttonSentiment.Size = new System.Drawing.Size(102, 34);
             this.buttonSentiment.TabIndex = 0;
@@ -1036,7 +1036,7 @@
             this.panelScoreBoard.Controls.Add(this.textBoxPos);
             this.panelScoreBoard.Controls.Add(this.label3);
             this.panelScoreBoard.Controls.Add(this.label4);
-            this.panelScoreBoard.Location = new System.Drawing.Point(204, 226);
+            this.panelScoreBoard.Location = new System.Drawing.Point(204, 245);
             this.panelScoreBoard.Name = "panelScoreBoard";
             this.panelScoreBoard.Size = new System.Drawing.Size(172, 179);
             this.panelScoreBoard.TabIndex = 37;
@@ -1082,7 +1082,7 @@
             this.panel4.Controls.Add(this.radioButtonNorm1);
             this.panel4.Controls.Add(this.radioButtonActualFreq);
             this.panel4.Controls.Add(this.radioButtonBinary);
-            this.panel4.Location = new System.Drawing.Point(248, 132);
+            this.panel4.Location = new System.Drawing.Point(248, 147);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(120, 104);
             this.panel4.TabIndex = 38;
