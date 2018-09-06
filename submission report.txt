@@ -1,9 +1,9 @@
 ==========================Exercise Checking Report==============================
-Exercise No...........: 2
+Exercise No...........: 3
 First Student Details.: 032574055 - Amitai Stern 
 Second Student Details: 200507499- Yarden Ben Shimon
-Delivery Date.........: 26 - August - 18
+Delivery Date.........: 9 - September - 18
 Delivered In Delay....: No
 Delay Reason..........: -
-Comments..............: please use facebook test user mentioned in documentation
+Comments..............: -
 =======================End Exercise Checking Report=============================
