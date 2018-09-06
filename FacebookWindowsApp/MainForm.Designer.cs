@@ -376,6 +376,7 @@
             this.panelFeature1.Controls.Add(this.panel4);
             this.panelFeature1.Controls.Add(this.panelAllPosts);
             this.panelFeature1.Controls.Add(this.panelScoreBoard);
+            this.panelFeature1.Controls.Add(this.panelCustomSentence);
             this.panelFeature1.Controls.Add(this.panelSelectedPost);
             this.panelFeature1.Controls.Add(this.radioButtonCustomSentence);
             this.panelFeature1.Controls.Add(this.radioButtonSelectedPost);
@@ -395,7 +396,7 @@
             // 
             this.panelCustomSentence.Controls.Add(this.textBoxToAnalyze);
             this.panelCustomSentence.Controls.Add(this.labelSubmitText);
-            this.panelCustomSentence.Location = new System.Drawing.Point(137, 70);
+            this.panelCustomSentence.Location = new System.Drawing.Point(6, 242);
             this.panelCustomSentence.Name = "panelCustomSentence";
             this.panelCustomSentence.Size = new System.Drawing.Size(220, 179);
             this.panelCustomSentence.TabIndex = 36;
@@ -422,7 +423,6 @@
             this.panelSelectedPost.Controls.Add(this.buttonNextPost);
             this.panelSelectedPost.Controls.Add(this.textBoxPostSelect);
             this.panelSelectedPost.Controls.Add(this.labelSelectPost);
-            this.panelSelectedPost.Controls.Add(this.panelCustomSentence);
             this.panelSelectedPost.Location = new System.Drawing.Point(0, 253);
             this.panelSelectedPost.Name = "panelSelectedPost";
             this.panelSelectedPost.Size = new System.Drawing.Size(219, 174);
@@ -443,7 +443,7 @@
             this.panelAllPosts.Controls.Add(this.listBoxNegative);
             this.panelAllPosts.Controls.Add(this.labelPositive);
             this.panelAllPosts.Controls.Add(this.labelNegative);
-            this.panelAllPosts.Location = new System.Drawing.Point(0, 440);
+            this.panelAllPosts.Location = new System.Drawing.Point(3, 245);
             this.panelAllPosts.Name = "panelAllPosts";
             this.panelAllPosts.Size = new System.Drawing.Size(376, 189);
             this.panelAllPosts.TabIndex = 34;
