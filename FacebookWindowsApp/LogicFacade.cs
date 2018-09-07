@@ -13,7 +13,7 @@ namespace FacebookWindowsApp
         private AppSettings m_AppSettings;
         private MemoryGame m_MemoryGame;
         private SentimentAnalyzer m_SentimentAnalyzer;
-        private static PostCollection m_postCollection;
+        private static IEnumerable<string> m_postCollection;
         private static IEnumerator<string> m_postIt;
         private readonly int SHORT_SENTENCE_LEN = 4;
         //private Func<>
@@ -139,8 +139,8 @@ namespace FacebookWindowsApp
 
         internal string initPostTextBox()
         {
-            m_postCollection = new PostCollection(LoggedInUser, (str) => str.Split(' ').Length > SHORT_SENTENCE_LEN);
-            m_postIt = (m_postCollection as IEnumerable<string>).GetEnumerator();
+            m_postCollection = new PostAggregate(LoggedInUser, (str) => str.Split(' ').Length > SHORT_SENTENCE_LEN);
+            m_postIt = m_postCollection.GetEnumerator();
             m_postIt.MoveNext();
 
             return m_postIt.Current;
@@ -150,7 +150,7 @@ namespace FacebookWindowsApp
         {
             if (!m_postIt.MoveNext())
             {
-                m_postIt = (m_postCollection as IEnumerable<string>).GetEnumerator();
+                m_postIt = m_postCollection.GetEnumerator();
                 m_postIt.MoveNext();
             }
 
