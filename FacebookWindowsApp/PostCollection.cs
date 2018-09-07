@@ -10,9 +10,9 @@ namespace FacebookWindowsApp
     class PostCollection : IEnumerable, IEnumerable<string>
     {
         private readonly List<string> m_Posts = new List<string>();
-        public Func<int, bool> Test { get; set; }
+        public Func<string, bool> Test { get; set; }
 
-        public PostCollection(User user, Func<int, bool> i_Test)
+        public PostCollection(User user, Func<string, bool> i_Test)
         {
             this.Test = i_Test;
             foreach (Post post in user.Posts)
@@ -33,7 +33,7 @@ namespace FacebookWindowsApp
         {
             for (int i = 0; i < m_Posts.Count; ++i)
             {
-                if ( !Test.Invoke(m_Posts[i].Length))
+                if ( !Test.Invoke(m_Posts[i]))
                 {
                     continue;
                 }
@@ -46,9 +46,9 @@ namespace FacebookWindowsApp
             private PostCollection m_Collection;
             private int m_CurrentIdx = -1;
             private int m_Count = -1;
-            private Func<int, bool> m_Test;
+            private Func<string, bool> m_Test;
 
-            public PostIterator(PostCollection i_Collection, Func<int, bool> i_Test)
+            public PostIterator(PostCollection i_Collection, Func<string, bool> i_Test)
             {
                 m_Test = i_Test;
                 m_Collection = i_Collection;
@@ -66,7 +66,7 @@ namespace FacebookWindowsApp
             public bool MoveNext()
             {
                 ++m_CurrentIdx;
-                if ( !m_Test(m_Collection.m_Posts[m_CurrentIdx].Length) )
+                if ( !m_Test(m_Collection.m_Posts[m_CurrentIdx]) )
                 {
                     ++m_CurrentIdx;
                 }

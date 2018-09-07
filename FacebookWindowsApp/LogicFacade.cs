@@ -15,7 +15,7 @@ namespace FacebookWindowsApp
         private SentimentAnalyzer m_SentimentAnalyzer;
         private static PostCollection m_postCollection;
         private static IEnumerator<string> m_postIt;
-        private readonly int SHORT_SENTENCE_LEN = 15;
+        private readonly int SHORT_SENTENCE_LEN = 4;
         //private Func<>
 
         public User LoggedInUser { get; set; }
@@ -139,7 +139,7 @@ namespace FacebookWindowsApp
 
         internal string initPostTextBox()
         {
-            m_postCollection = new PostCollection(LoggedInUser, (num) => num > SHORT_SENTENCE_LEN);
+            m_postCollection = new PostCollection(LoggedInUser, (str) => str.Split(' ').Length > SHORT_SENTENCE_LEN);
             m_postIt = (m_postCollection as IEnumerable<string>).GetEnumerator();
             m_postIt.MoveNext();
 
